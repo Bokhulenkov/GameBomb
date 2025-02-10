@@ -68,13 +68,15 @@ class GameViewController: UIViewController {
     private func playSound(_ sound: String) {
         if let path = Bundle.main.path(forResource: sound, ofType: "mp3") {
             let url = URL(fileURLWithPath: path)
-            
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: url)
-                audioPlayer?.play()
-            } catch {
-                print("Ошибка при воспроизведении звука: \(error.localizedDescription)")
+            if audioPlayer == nil {
+                do {
+                    audioPlayer = try AVAudioPlayer(contentsOf: url)
+                    audioPlayer?.prepareToPlay()
+                } catch {
+                    print("Ошибка при воспроизведении звука: \(error.localizedDescription)")
+                }
             }
+            audioPlayer?.play()
         } else {
             print("Файл не найден")
         }
