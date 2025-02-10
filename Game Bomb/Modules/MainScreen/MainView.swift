@@ -11,11 +11,19 @@ final class MainView: UIView {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.customYellow
+        backgroundColor = UIColor(named: "customyellowColor")
         
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    lazy var button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Go to Play", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
 }
