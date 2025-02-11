@@ -44,8 +44,7 @@ final class MainView: UIView {
     private let gameLabel: UILabel = {
         let label = UILabel()
         label.text = "ИГРА ДЛЯ КОМПАНИИ"
-//        label.font = .custom(font: .bold, size: 28)
-        label.font = UIFont.systemFont(ofSize: 28, weight: .heavy)
+        label.font = .custom(font: .bold, size: 28)
         label.textAlignment = .center
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -55,8 +54,7 @@ final class MainView: UIView {
     private let gameBombLabel: UILabel = {
         let label = UILabel()
         label.text = "БОМБА"
-//        label.font = .custom(font: .bold, size: 48)
-        label.font = UIFont.systemFont(ofSize: 48, weight: .heavy)
+        label.font = .custom(font: .bold, size: 48)
         label.textAlignment = .center
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -153,17 +151,15 @@ final class MainView: UIView {
             gameBombLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             gameBombLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-//            bombImageView.topAnchor.constraint(equalTo: gameBombLabel.bottomAnchor, constant: 30),
             bombImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             bombImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            bombImageView.heightAnchor.constraint(equalToConstant: 300),
             bombImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             bombImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
             buttonsStack.topAnchor.constraint(equalTo: bombImageView.bottomAnchor, constant: 50),
             buttonsStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             buttonsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            buttonsStack.heightAnchor.constraint(equalToConstant: 150),
+            buttonsStack.heightAnchor.constraint(equalToConstant: 140),
             buttonsStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }

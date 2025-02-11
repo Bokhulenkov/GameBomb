@@ -24,13 +24,13 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: MainViewDelegate {
     func didTapSettingButton() {
-        let gameVC = GameViewController()
-        navigationController?.pushViewController(gameVC, animated: true)
+        let categoryVC = CategoryViewController()
+        navigationController?.pushViewController(categoryVC, animated: true)
     }
     
     func didTapQuestionButton() {
-        let gameVC = GameViewController()
-        navigationController?.pushViewController(gameVC, animated: true)
+        let rulesVC = RulesViewController()
+        navigationController?.pushViewController(rulesVC, animated: true)
     }
     
     func didTapStartButton() {
