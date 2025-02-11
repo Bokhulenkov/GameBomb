@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
         gameView.startButton.addTarget(self, action: #selector(pushButton), for: .touchUpInside)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pause.circle"), style: .done, target: self, action: #selector(stopTimer))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "customPrimaryColor")
     }
     
     private func setupView() {
@@ -65,18 +66,32 @@ class GameViewController: UIViewController {
         ])
     }
     
+//    private func playSound(_ sound: String) {
+//        if let path = Bundle.main.path(forResource: sound, ofType: "mp3") {
+//            let url = URL(fileURLWithPath: path)
+//            if audioPlayer == nil {
+//                do {
+//                    audioPlayer = try AVAudioPlayer(contentsOf: url)
+//                    audioPlayer?.play()
+//                } catch {
+//                    print("Ошибка при воспроизведении звука: \(error.localizedDescription)")
+//                }
+//            }
+//        } else {
+//            print("Файл не найден")
+//        }
+//    }
+    
     private func playSound(_ sound: String) {
         if let path = Bundle.main.path(forResource: sound, ofType: "mp3") {
             let url = URL(fileURLWithPath: path)
-            if audioPlayer == nil {
-                do {
-                    audioPlayer = try AVAudioPlayer(contentsOf: url)
-                    audioPlayer?.prepareToPlay()
-                } catch {
-                    print("Ошибка при воспроизведении звука: \(error.localizedDescription)")
-                }
+            
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url)
+                audioPlayer?.play()
+            } catch {
+                print("Ошибка при воспроизведении звука: \(error.localizedDescription)")
             }
-            audioPlayer?.play()
         } else {
             print("Файл не найден")
         }
@@ -107,12 +122,12 @@ class GameViewController: UIViewController {
     private func updateTimer() {
         if  self.currentSeconds < self.secondsForGame.randomElement() ?? 30 {
             print("Игра началась")
+            playSound("soundBomb")
             self.currentSeconds += 1
-            playSound("alarm_sound")
         } else {
             print("Игра окончена")
             timer.invalidate()
-            playSound("alarm_sound")
+            playSound("soundBoom")
         }
     }
 }
