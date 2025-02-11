@@ -16,7 +16,7 @@ protocol MainViewDelegate: AnyObject {
 
 final class MainView: UIView {
     
-    var delegate: MainViewDelegate?
+   weak var delegate: MainViewDelegate?
     
     private let backImageView: UIImageView = {
         let image = UIImageView()
