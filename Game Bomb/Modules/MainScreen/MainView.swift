@@ -11,7 +11,7 @@ final class MainView: UIView {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.customYellow
+        backgroundColor = UIColor.customyellow
         
     }
     
