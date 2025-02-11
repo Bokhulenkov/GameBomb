@@ -7,10 +7,12 @@
 
 import UIKit
 import AVFoundation
+import DotLottie
 
 class GameViewController: UIViewController {
     
     private let gameView = GameView()
+    private let animationVC = AnimationViewController()
     
     var audioPlayer: AVAudioPlayer?
     
@@ -92,7 +94,6 @@ class GameViewController: UIViewController {
     private func playSound(_ sound: String) {
         if let path = Bundle.main.path(forResource: sound, ofType: "mp3") {
             let url = URL(fileURLWithPath: path)
-            
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: url)
                 audioPlayer?.play()
@@ -104,11 +105,23 @@ class GameViewController: UIViewController {
         }
     }
     
+    private func showAnimation() {
+        // Создаем экземпляр AnimationViewController
+        let animationVC = AnimationViewController()
+        animationVC.animation
+
+        // Открываем контроллер
+//        navigationController?.pushViewController(animationVC, animated: true)
+//        present(animationVC, animated: true, completion: nil)
+    }
+    
     @objc
     private func pushButton() {
         timer.invalidate()
         currentSeconds = 0
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
+        showAnimation()
         
         navigationItem.rightBarButtonItem?.isEnabled = true
         gameView.questuonLabel.text = "*Вопрос из категории*"

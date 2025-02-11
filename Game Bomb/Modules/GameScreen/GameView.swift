@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import DotLottie
 
 final class GameView: UIView {
+    
+//    private let animationVC = AnimationViewController()
+    
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +35,7 @@ final class GameView: UIView {
         let gameLabel = UILabel()
         gameLabel.text = "Игра"
         gameLabel.textColor = UIColor(named: "customPrimaryColor")
-        gameLabel.font = .boldSystemFont(ofSize: 28)
+        gameLabel.font = .custom(font: .bold, size: 30)
         gameLabel.textAlignment = .center
         gameLabel.numberOfLines = 0
         gameLabel.translatesAutoresizingMaskIntoConstraints = false
