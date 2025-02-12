@@ -18,7 +18,7 @@ class CategoryViewCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .custom(font: .bold, size: 16)
         label.textColor = .label
         
         return label
@@ -36,6 +36,7 @@ class CategoryViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupShadow()
         backgroundColor = .customLightGray
         layer.cornerRadius = 20
         layer.borderWidth = 1
@@ -47,6 +48,15 @@ class CategoryViewCell: UICollectionViewCell {
     }
     
     // MARK: - Private Methods
+    private func setupShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 0.25
+        
+        layer.masksToBounds = false
+    }
+    
     private func setupUI() {
         addSubview(titleLabel)
         addSubview(iconImageView)

@@ -9,12 +9,12 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     private var categories: [Category] = [
-        Category(name: "О Разном", icon: UIImage(named: "different")),
-        Category(name: "Спорт и хобби", icon: UIImage(named: "sport")),
-        Category(name: "Про жизнь", icon: UIImage(named: "life")),
-        Category(name: "Знаменитости", icon: UIImage(named: "celebrities")),
-        Category(name: "Искусство и кино", icon: UIImage(named: "artAndCinema")),
-        Category(name: "Природа", icon: UIImage(named: "nature"))
+        Category(name: "О Разном", icon: UIImage(named: "different"), questions: []),
+        Category(name: "Спорт и хобби", icon: UIImage(named: "sport"), questions: []),
+        Category(name: "Про жизнь", icon: UIImage(named: "life"), questions: []),
+        Category(name: "Знаменитости", icon: UIImage(named: "celebrities"), questions: []),
+        Category(name: "Искусство и кино", icon: UIImage(named: "artAndCinema"), questions: []),
+        Category(name: "Природа", icon: UIImage(named: "nature"), questions: [])
     ]
     
     // MARK: - GUI Variables
@@ -67,7 +67,7 @@ class CategoryViewController: UIViewController {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 88),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
