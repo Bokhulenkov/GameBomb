@@ -36,6 +36,7 @@ final class MainView: UIView {
     private let questionButton: UIButton  = {
         let button = UIButton()
         button.setImage(UIImage(named: "questionRed"), for: .normal)
+        button.isUserInteractionEnabled = true
         button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
