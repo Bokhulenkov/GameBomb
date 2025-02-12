@@ -10,10 +10,10 @@ import AVFoundation
 import DotLottie
 
 class GameViewController: UIViewController {
+//    MARK: - Properties
+    var audioPlayer: AVAudioPlayer?
     
     private let gameView = GameView()
-    
-    var audioPlayer: AVAudioPlayer?
     private var tickAudioPlayer: AVAudioPlayer? // Отдельный плеер для звука таймера
     
     private var timer = Timer()
@@ -26,13 +26,14 @@ class GameViewController: UIViewController {
     private var animationDuration: Float = 7.3
     private var selectedTimerDuration: Int = 0
     
+//    MARK: - LifeCycle
+    
     override func loadView() {
         view = gameView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         setupConstraints()
         setupAnimation()
@@ -50,6 +51,7 @@ class GameViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "customPrimaryColor")
     }
     
+//    MARK: - Methods
     private func setupAnimation() {
         guard URL(string: "https://lottie.host/283b3c79-ebb6-4439-a235-5b54cc15f7ad/zlrIDXcPgo.lottie") != nil else {
             print("Invalid Lottie URL")
@@ -140,6 +142,7 @@ class GameViewController: UIViewController {
         ])
     }
     
+//    MARK: - Actions
     @objc
     private func pushButton() {
         // Выбираем случайное время для таймера

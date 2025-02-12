@@ -8,18 +8,9 @@
 import UIKit
 
 final class GameView: UIView {
+    //    MARK: - Properties
     
-//    private let animationVC = AnimationViewController()
-    
-    // MARK: - init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = UIColor(named: "customGrayColor")
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    //    private let animationVC = AnimationViewController()
     
     lazy var backImageView: UIImageView = {
         let backImageView = UIImageView()
@@ -54,8 +45,8 @@ final class GameView: UIView {
     
     lazy var bombImage: UIImageView = {
         let bombImage = UIImageView()
-        bombImage.image = UIImage(named: "Bomb image")
-        bombImage.isHidden = true
+        bombImage.image = UIImage(named: "BombImage")
+        bombImage.isHidden = false // вот тут по идее должно быть изначально false. У тебя есть кнопка запустить добавь туда смену состояния на true
         bombImage.translatesAutoresizingMaskIntoConstraints = false
         return bombImage
     }()
@@ -71,4 +62,14 @@ final class GameView: UIView {
         startButton.translatesAutoresizingMaskIntoConstraints = false
         return startButton
     }()
+    
+    // MARK: - init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = UIColor(named: "customGrayColor")
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

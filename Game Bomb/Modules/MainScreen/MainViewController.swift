@@ -28,29 +28,31 @@ final class MainViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor(named: "customPrimaryColor")
     }
     
+    //    MARK: - Methods
     private func setupView() {
-//        view.addSubview(mainView.button)
+        //        view.addSubview(mainView.button)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-//            mainView.button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            mainView.button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            //            mainView.button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            //            mainView.button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
     private func buttonPushed() {
-//        mainView.button.addTarget(self, action: #selector(buttonPush), for: .touchUpInside)
+        //        mainView.button.addTarget(self, action: #selector(buttonPush), for: .touchUpInside)
     }
     
+    //    MARK: - Actions
     @objc
     private func buttonPush() {
         let gameController = GameViewController()
         navigationController?.pushViewController(gameController, animated: true)
-
     }
 }
 
+// MARK: - Extensions MainViewDelegate
 extension MainViewController: MainViewDelegate {
     func didTapSettingButton() {
         let categoryVC = CategoryViewController()
