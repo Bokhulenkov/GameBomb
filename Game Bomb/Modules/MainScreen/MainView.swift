@@ -107,6 +107,7 @@ final class MainView: UIView {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupUI()
         setActions()
         makeConstraints()
@@ -129,7 +130,7 @@ final class MainView: UIView {
         buttonsStack.addArrangedSubview(startButton)
         buttonsStack.addArrangedSubview(categoryButton)
     }
-    
+
     private func setActions() {
         startButton.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
