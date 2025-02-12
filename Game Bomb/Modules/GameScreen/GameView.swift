@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DotLottie
 
 final class GameView: UIView {
     
@@ -56,6 +55,7 @@ final class GameView: UIView {
     lazy var bombImage: UIImageView = {
         let bombImage = UIImageView()
         bombImage.image = UIImage(named: "Bomb image")
+        bombImage.isHidden = true
         bombImage.translatesAutoresizingMaskIntoConstraints = false
         return bombImage
     }()
