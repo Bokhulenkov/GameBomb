@@ -29,14 +29,14 @@ final class MainView: UIView {
     private let settingButton: UIButton = {
         let button = UIButton ()
         button.setImage(UIImage(named: "setting"), for: .normal)
-        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     private let questionButton: UIButton  = {
         let button = UIButton()
         button.setImage(UIImage(named: "questionRed"), for: .normal)
-        button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -86,7 +86,7 @@ final class MainView: UIView {
         button.titleLabel?.font = .custom(font: .medium, size: 20)
         button.backgroundColor = .customwhite
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -98,7 +98,7 @@ final class MainView: UIView {
         button.titleLabel?.font = .custom(font: .medium, size: 20)
         button.backgroundColor = .customwhite
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
