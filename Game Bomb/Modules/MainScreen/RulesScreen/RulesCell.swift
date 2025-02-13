@@ -24,13 +24,20 @@ import UIKit
     
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .customYellow
+        label.backgroundColor = .mainBackground
+        label.font = .custom(font: .bold, size: 16)
         label.textAlignment = .center
         label.layer.cornerRadius = 15
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+     let imageButton: UIImageView = {
+         let image = UIImageView()
+         image.contentMode = .bottom
+         image.translatesAutoresizingMaskIntoConstraints = false
+         return image
+     }()
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -54,6 +61,7 @@ import UIKit
         shadowView.addSubview(numberLabel)
         contentView.addSubview(shadowView)
         contentView.addSubview(descriptionLabel)
+        contentView.addSubview(imageButton)
         
         NSLayoutConstraint.activate([
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
@@ -70,11 +78,28 @@ import UIKit
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            
+            imageButton.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 50),
+            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            imageButton.widthAnchor.constraint(equalToConstant: 167),
+            imageButton.heightAnchor.constraint(equalToConstant: 27),
+            imageButton.trailingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -50)
         ])
     }
-    func configureCell(number: Int, description: NSAttributedString) {
-        numberLabel.text = "\(number)"
-        descriptionLabel.attributedText = description
-    }
+     func configureCell(number: Int, description: NSAttributedString?, image: UIImage?) {
+         numberLabel.text = "\(number)"
+         descriptionLabel.attributedText = description
+         
+         if let image = image {
+             imageButton.image = image
+             imageButton.isHidden = false
+             descriptionLabel.bottomAnchor.constraint(equalTo: imageButton.topAnchor
+                                                      , constant: -10).isActive = true
+         } else {
+             imageButton.image = nil
+             imageButton.isHidden = true
+             descriptionLabel.leadingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 10).isActive = true
+         }
+     }
 }

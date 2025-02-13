@@ -37,7 +37,11 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
-//        rulesView.delegate = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting"), style: .done, target: self, action: #selector(didTapSettingButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "questionRed"), style: .plain, target: self, action: #selector(didTapQuestionButton))
+        navigationItem.rightBarButtonItem?.tintColor = .red
+        
+        rulesView.delegate = self
         rulesView.isHidden = true
         rulesView.tableView.dataSource = self
         rulesView.tableView.delegate = self
@@ -51,6 +55,23 @@ final class MainViewController: UIViewController {
     }
     
     //    MARK: - Methods
+    @objc func didTapSettingButton() {
+        let categoryVC = CategoryViewController()
+        navigationController?.pushViewController(categoryVC, animated: true)
+    }
+    
+    @objc func didTapQuestionButton() {
+
+        rulesView.isHidden = false
+        rulesView.backgroundColor = .customWhite
+        view.addSubview(rulesView)
+        NSLayoutConstraint.activate([
+            rulesView.heightAnchor.constraint(equalToConstant: 650),
+            rulesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            rulesView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rulesView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
     private func setupView() {
         //        view.addSubview(mainView.button)
     }
@@ -75,24 +96,7 @@ final class MainViewController: UIViewController {
 }
 
 // MARK: - Extensions MainViewDelegate
-extension MainViewController: MainViewDelegate {
-    func didTapSettingButton() {
-        let categoryVC = CategoryViewController()
-        navigationController?.pushViewController(categoryVC, animated: true)
-    }
-    
-    func didTapQuestionButton() {
-        //        let rulesVC = RulesViewController()
-        //        navigationController?.pushViewController(rulesVC, animated: true)
-        rulesView.isHidden = false
-        view.addSubview(rulesView)
-        NSLayoutConstraint.activate([
-            rulesView.heightAnchor.constraint(equalToConstant: 700),
-            rulesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            rulesView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            rulesView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
+extension MainViewController: MainViewDelegate, RulesViewDelegate {
     
     func didTapStartButton() {
         let gameVC = GameViewController()
@@ -119,7 +123,9 @@ extension MainViewController: MainViewDelegate {
         let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self, action: #selector(didTapRightButton))
         categoryVC.navigationItem.rightBarButtonItem = rightButton
     }
-    
+    func swipeBackButtonTapped() {
+        rulesView.isHidden = true
+    }
     @objc func didTapRightButton() {
         //Open game rules
     }
@@ -137,9 +143,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let rule = rules[indexPath.row]
-        cell.configureCell(number: indexPath.row + 1, description: createAttributedText(for: rule.0))
-        cell.backgroundColor = .customWhite
-//        cell.selectionStyle = .none
+        let attributedText = createAttributedText(for: rule.0)
+        cell.configureCell(number: indexPath.row + 1, description: attributedText, image: rule.1)
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         return cell
     }
     

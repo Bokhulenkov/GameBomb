@@ -8,8 +8,8 @@
 import UIKit
 
 protocol MainViewDelegate: AnyObject {
-    func didTapSettingButton()
-    func didTapQuestionButton()
+//    func didTapSettingButton()
+//    func didTapQuestionButton()
     func didTapStartButton()
     func didTapCategoryButton()
 }
@@ -21,28 +21,28 @@ final class MainView: UIView {
     //    MARK: - Private Properties
     private let backImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "background")
+        image.image = UIImage(named: "backgroundMain")
         image.contentMode = .scaleAspectFit
         image.isUserInteractionEnabled = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    private let settingButton: UIButton = {
-        let button = UIButton ()
-        button.setImage(UIImage(named: "setting"), for: .normal)
-        //        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let questionButton: UIButton  = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "questionRed"), for: .normal)
-        //        button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+//    private let settingButton: UIButton = {
+//        let button = UIButton ()
+//        button.setImage(UIImage(named: "setting"), for: .normal)
+//        //        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
+//    
+//    private let questionButton: UIButton  = {
+//        let button = UIButton()
+//        button.setImage(UIImage(named: "questionRed"), for: .normal)
+//        //        button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
     
     private let gameLabel: UILabel = {
         let label = UILabel()
@@ -121,8 +121,8 @@ final class MainView: UIView {
     private func setupUI() {
         backgroundColor = .mainBackground
         addSubview(backImageView)
-        backImageView.addSubview(settingButton)
-        backImageView.addSubview(questionButton)
+//        backImageView.addSubview(settingButton)
+//        backImageView.addSubview(questionButton)
         backImageView.addSubview(gameLabel)
         backImageView.addSubview(gameBombLabel)
         backImageView.addSubview(bombImageView)
@@ -143,15 +143,15 @@ final class MainView: UIView {
             backImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            settingButton.topAnchor.constraint(equalTo: topAnchor,constant: 50),
-            settingButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
-            settingButton.heightAnchor.constraint(equalToConstant: 35),
-            settingButton.widthAnchor.constraint(equalToConstant: 35),
-            
-            questionButton.topAnchor.constraint(equalTo: topAnchor,constant: 50),
-            questionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35),
-            questionButton.heightAnchor.constraint(equalToConstant: 35),
-            questionButton.widthAnchor.constraint(equalToConstant: 35),
+//            settingButton.topAnchor.constraint(equalTo: topAnchor,constant: 50),
+//            settingButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
+//            settingButton.heightAnchor.constraint(equalToConstant: 35),
+//            settingButton.widthAnchor.constraint(equalToConstant: 35),
+//            
+//            questionButton.topAnchor.constraint(equalTo: topAnchor,constant: 50),
+//            questionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35),
+//            questionButton.heightAnchor.constraint(equalToConstant: 35),
+//            questionButton.widthAnchor.constraint(equalToConstant: 35),
             
             gameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor,constant: 20),
             gameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
@@ -177,12 +177,12 @@ final class MainView: UIView {
 
 // MARK: - Extensions MainView
 extension MainView {
-    @objc func didTapSettingButton() {
-        delegate?.didTapSettingButton()
-    }
-    @objc func didTapQuestionButton() {
-        delegate?.didTapQuestionButton()
-    }
+//    @objc func didTapSettingButton() {
+//        delegate?.didTapSettingButton()
+//    }
+//    @objc func didTapQuestionButton() {
+//        delegate?.didTapQuestionButton()
+//    }
     @objc func didTapStartButton() {
         delegate?.didTapStartButton()
     }
