@@ -85,7 +85,7 @@ class HelpCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .customyellow
+        view.backgroundColor = .customYellow
         view.layer.cornerRadius = 30
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.clipsToBounds = true
