@@ -34,7 +34,7 @@ import UIKit
     }()
      let imageButton: UIImageView = {
          let image = UIImageView()
-         image.contentMode = .bottom
+         image.contentMode = .scaleAspectFill
          image.translatesAutoresizingMaskIntoConstraints = false
          return image
      }()
@@ -80,26 +80,14 @@ import UIKit
             descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             
-            imageButton.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 50),
-            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
-            imageButton.widthAnchor.constraint(equalToConstant: 167),
-            imageButton.heightAnchor.constraint(equalToConstant: 27),
-            imageButton.trailingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -50)
+            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            imageButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageButton.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
      func configureCell(number: Int, description: NSAttributedString?, image: UIImage?) {
          numberLabel.text = "\(number)"
          descriptionLabel.attributedText = description
-         
-         if let image = image {
-             imageButton.image = image
-             imageButton.isHidden = false
-             descriptionLabel.bottomAnchor.constraint(equalTo: imageButton.topAnchor
-                                                      , constant: -10).isActive = true
-         } else {
-             imageButton.image = nil
-             imageButton.isHidden = true
-             descriptionLabel.leadingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 10).isActive = true
-         }
+         imageButton.image = image
      }
 }

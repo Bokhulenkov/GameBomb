@@ -15,10 +15,18 @@ final class RulesView: UIView {
     
     weak var delegate: RulesViewDelegate?
     
+    lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "helpBackground")
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .customWhite
+        tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(RulesCell.self, forCellReuseIdentifier: RulesCell.identifier)
@@ -41,6 +49,8 @@ final class RulesView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+   
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,15 +66,24 @@ final class RulesView: UIView {
         button.addTarget(self, action: #selector(swipeBackButtonTapped), for: .touchUpInside)
     }
     private func setupViews() {
-        backgroundColor = .white
-        layer.cornerRadius = 16
+        backgroundColor = .customGray
+        layer.cornerRadius = 30
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.masksToBounds = true
         
-        addSubview(button)
-        addSubview(title)
-        addSubview(tableView)
-        
+        addSubview(backgroundImageView)
+        backgroundImageView.addSubview(button)
+        backgroundImageView.addSubview(title)
+        backgroundImageView.addSubview(tableView)
+       
         NSLayoutConstraint.activate([
+            
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             button.topAnchor.constraint(equalTo: topAnchor, constant: 2),
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
@@ -73,10 +92,11 @@ final class RulesView: UIView {
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            tableView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: -30),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+          
         ])
     }
 }

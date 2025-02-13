@@ -8,15 +8,13 @@
 import UIKit
 
 protocol MainViewDelegate: AnyObject {
-//    func didTapSettingButton()
-//    func didTapQuestionButton()
     func didTapStartButton()
     func didTapCategoryButton()
 }
 
 final class MainView: UIView {
     //    MARK: - Properties
-    var delegate: MainViewDelegate?
+    weak var delegate: MainViewDelegate?
     
     //    MARK: - Private Properties
     private let backImageView: UIImageView = {
@@ -27,22 +25,6 @@ final class MainView: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
-    
-//    private let settingButton: UIButton = {
-//        let button = UIButton ()
-//        button.setImage(UIImage(named: "setting"), for: .normal)
-//        //        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//    
-//    private let questionButton: UIButton  = {
-//        let button = UIButton()
-//        button.setImage(UIImage(named: "questionRed"), for: .normal)
-//        //        button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
     
     private let gameLabel: UILabel = {
         let label = UILabel()
@@ -87,7 +69,7 @@ final class MainView: UIView {
         button.setTitle("Старт игры", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customwhite
+        button.backgroundColor = .customWhite
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -98,7 +80,7 @@ final class MainView: UIView {
         button.setTitle("Категории", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customwhite
+        button.backgroundColor = .customWhite
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

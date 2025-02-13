@@ -38,7 +38,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         mainView.delegate = self
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting"), style: .done, target: self, action: #selector(didTapSettingButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "questionRed"), style: .plain, target: self, action: #selector(didTapQuestionButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "questionRed1"), style: .plain, target: self, action: #selector(didTapQuestionButton))
         navigationItem.rightBarButtonItem?.tintColor = .red
         
         rulesView.delegate = self
@@ -113,7 +113,6 @@ extension MainViewController: MainViewDelegate, RulesViewDelegate {
     @objc func didTapRightButton() {
         //Open game rules
     }
-    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -125,7 +124,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RulesCell.identifier, for: indexPath) as? RulesCell else {
             return UITableViewCell()
         }
-        
         let rule = rules[indexPath.row]
         let attributedText = createAttributedText(for: rule.0)
         cell.configureCell(number: indexPath.row + 1, description: attributedText, image: rule.1)
@@ -140,7 +138,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func createAttributedText(for text: String) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 8
+        paragraphStyle.lineSpacing = 6
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: paragraphStyle,
             .font: UIFont.systemFont(ofSize: 20)
