@@ -48,7 +48,7 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        
-        view.backgroundColor = UIColor(named: "customwhiteColor")
+        view.backgroundColor = UIColor(named: "customWhiteColor")
         
         setupUI()
     }

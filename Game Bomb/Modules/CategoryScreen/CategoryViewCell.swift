@@ -93,7 +93,7 @@ class CategoryViewCell: UICollectionViewCell {
     //MARK: - Properties
     override var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? UIColor(named: "customgreenColor") : UIColor(named: "customLightGrayColor")
+            backgroundColor = isSelected ? UIColor(named: "customGreenColor") : UIColor(named: "customLightGrayColor")
             checkImageView.isHidden = !isSelected
         }
     }

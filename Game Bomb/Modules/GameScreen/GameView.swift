@@ -60,7 +60,7 @@ final class GameView: UIView {
         let startButton = UIButton()
         startButton.setTitle("Запустить", for: .normal)
         startButton.setTitleColor(UIColor(named: "customDarkGrayColor"), for: .normal)
-        startButton.backgroundColor = UIColor(named: "customyellowColor")
+        startButton.backgroundColor = UIColor(named: "customYellowColor")
         startButton.titleLabel?.font = .custom(font: .medium, size: 20)
         startButton.isHidden = false
         startButton.layer.cornerRadius = 10
