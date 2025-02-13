@@ -80,7 +80,7 @@ extension MainViewController: MainViewDelegate {
         
         
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.custom(font: .bold, size: 30),
+            .font: UIFont.custom(font: .bold, size: 28),
             .foregroundColor: UIColor.customDarkGray
         ]
         categoryVC.navigationController?.navigationBar.titleTextAttributes = attributes
@@ -91,8 +91,21 @@ extension MainViewController: MainViewDelegate {
     }
     
     @objc func didTapRightButton() {
-        //Open game rules
+        let bottomSheetVC = HelpCategoryViewController()
+      
+        let screenHeight = UIScreen.main.bounds.height
+        let sheetHeight: CGFloat = screenHeight * 0.75
+        
+        bottomSheetVC.modalPresentationStyle = .formSheet
+        bottomSheetVC.view.frame = CGRect(x: 0, y: screenHeight, width: view.frame.width, height: sheetHeight)
+        
+        if let sheet = bottomSheetVC.sheetPresentationController {
+//            sheet.prefersGrabberVisible = true
+            sheet.detents = [.custom { _ in
+                return sheetHeight
+            }]
+        }
+            present(bottomSheetVC, animated: true, completion: nil)
     }
-    
 }
 
