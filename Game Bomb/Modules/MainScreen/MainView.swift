@@ -15,9 +15,10 @@ protocol MainViewDelegate: AnyObject {
 }
 
 final class MainView: UIView {
-    
+    //    MARK: - Properties
     var delegate: MainViewDelegate?
     
+    //    MARK: - Private Properties
     private let backImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "background")
@@ -26,18 +27,19 @@ final class MainView: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
+    
     private let settingButton: UIButton = {
         let button = UIButton ()
         button.setImage(UIImage(named: "setting"), for: .normal)
-        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
+        //        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
     private let questionButton: UIButton  = {
         let button = UIButton()
         button.setImage(UIImage(named: "questionRed"), for: .normal)
-        button.isUserInteractionEnabled = true
-        button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
+        //        button.addTarget(self, action: #selector(didTapQuestionButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -71,12 +73,12 @@ final class MainView: UIView {
         return image
     }()
     
-   private let buttonsStack: UIStackView = {
+    private let buttonsStack: UIStackView = {
         let stack = UIStackView()
-       stack.axis = .vertical
-       stack.distribution = .fillEqually
-       stack.spacing = 15
-       stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.spacing = 15
+        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
@@ -85,9 +87,8 @@ final class MainView: UIView {
         button.setTitle("Старт игры", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customwhite
+        button.backgroundColor = .customWhite
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -97,9 +98,8 @@ final class MainView: UIView {
         button.setTitle("Категории", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customwhite
+        button.backgroundColor = .customWhite
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -107,7 +107,9 @@ final class MainView: UIView {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupUI()
+        setActions()
         makeConstraints()
     }
     
@@ -115,6 +117,7 @@ final class MainView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //    MARK: - Methods
     private func setupUI() {
         backgroundColor = .mainBackground
         addSubview(backImageView)
@@ -127,6 +130,12 @@ final class MainView: UIView {
         buttonsStack.addArrangedSubview(startButton)
         buttonsStack.addArrangedSubview(categoryButton)
     }
+
+    private func setActions() {
+        startButton.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
+        categoryButton.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+    }
+    
     private func makeConstraints() {
         NSLayoutConstraint.activate([
             backImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -165,6 +174,8 @@ final class MainView: UIView {
         ])
     }
 }
+
+// MARK: - Extensions MainView
 extension MainView {
     @objc func didTapSettingButton() {
         delegate?.didTapSettingButton()

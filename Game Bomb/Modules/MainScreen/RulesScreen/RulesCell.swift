@@ -24,7 +24,7 @@ import UIKit
     
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .customyellow
+        label.backgroundColor = .customYellow
         label.textAlignment = .center
         label.layer.cornerRadius = 15
         label.clipsToBounds = true
