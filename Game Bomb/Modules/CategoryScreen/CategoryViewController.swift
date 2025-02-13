@@ -47,8 +47,8 @@ class CategoryViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .customWhite
+//        
+        view.backgroundColor = UIColor(named: "customWhiteColor")
         
         setupUI()
     }
