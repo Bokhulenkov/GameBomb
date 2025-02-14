@@ -10,10 +10,10 @@ import UIKit
 
 class HelpCategoryViewController: UIViewController {
     private var categories: [Category] = [
-        Category(name: "О Разном", icon: UIImage(named: "helpDifferent"), questions: []),
-        Category(name: "Спорт и хобби", icon: UIImage(named: "sport"), questions: []),
-        Category(name: "Про жизнь", icon: UIImage(named: "life"), questions: []),
-        Category(name: "Знаменитости", icon: UIImage(named: "celebrities"), questions: [])
+        Category(name: "О Разном", icon: UIImage(named: "different"), label: "anotherQuestions"),
+        Category(name: "Спорт и хобби", icon: UIImage(named: "sport"), label: "sportQuestions"),
+        Category(name: "Про жизнь", icon: UIImage(named: "life"), label: "lifeQuestions"),
+        Category(name: "Знаменитости", icon: UIImage(named: "celebrities"), label: "famousQuestions")
     ]
     
     // MARK: - GUI Variables
