@@ -65,7 +65,7 @@ import UIKit
         
         NSLayoutConstraint.activate([
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            shadowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            shadowView.topAnchor.constraint(equalTo: contentView.topAnchor),
             shadowView.widthAnchor.constraint(equalToConstant: 29),
             shadowView.heightAnchor.constraint(equalToConstant: 29),
 
@@ -76,13 +76,13 @@ import UIKit
 
             descriptionLabel.leadingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+//            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             
-            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
             imageButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageButton.heightAnchor.constraint(equalToConstant: 20),
+            imageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
      func configureCell(number: Int, description: NSAttributedString?, image: UIImage?) {
