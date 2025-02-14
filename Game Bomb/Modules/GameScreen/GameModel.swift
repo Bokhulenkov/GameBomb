@@ -24,12 +24,12 @@ final class GameModel {
     
     private var timer: Timer?
     private var currentSeconds = 0
-    private let secondsForGame = [15, 20, 25, 30, 35, 40]
+    private let secondsForGame = [10, 15, 20, 25, 30, 35, 40]
     private var selectedTimerDuration: Int = 0
     
     var animation: DotLottieAnimation?
     var animationView: UIView?
-    private let animationDuration: Float = 7.9
+    private let animationDuration: Float = 7.55
     
     var audioPlayer: AVAudioPlayer?
     var tickAudioPlayer: AVAudioPlayer?
@@ -51,6 +51,7 @@ final class GameModel {
     func startGame() {
         selectedTimerDuration = secondsForGame.randomElement() ?? 30
         startTimer()
+        tickAudioPlayer?.play()
         animation?.setSpeed(speed: animationDuration / Float(selectedTimerDuration))
         delegate?.gameDidStart()
     }
@@ -64,6 +65,7 @@ final class GameModel {
     
     func resumeGame() {
         startTimer()
+        tickAudioPlayer?.play()
         let _ = animation?.play()
         delegate?.gameDidResume()
     }
