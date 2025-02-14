@@ -146,13 +146,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
+   
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath.section == 0 && indexPath.row == 1 {
+        if indexPath.row == 1 {
             return 100
         }
-        return 70.0
+            return UITableView.automaticDimension
     }
     
     private func createAttributedText(for text: String) -> NSAttributedString {
