@@ -16,6 +16,8 @@ final class FinalView: UIView {
     // MARK: - Properties
     weak var delegate: FinalViewDelegate?
     
+    let finalModel = FinalModel()
+    
     // UI Elements
     lazy var backImageView: UIImageView = {
         let backImageView = UIImageView()
@@ -39,9 +41,9 @@ final class FinalView: UIView {
     
     lazy var questuonLabel: UILabel = {
         let questuonLabel = UILabel()
-        questuonLabel.text = "*Наказание/Другое наказание*"
+        questuonLabel.text = finalModel.prepeareLoss()
         questuonLabel.textColor = UIColor(named: "customDarkGrayColor")
-        questuonLabel.font = .custom(font: .medium, size: 28)
+        questuonLabel.font = .custom(font: .medium, size: 20)
         questuonLabel.textAlignment = .center
         questuonLabel.numberOfLines = 0
         questuonLabel.translatesAutoresizingMaskIntoConstraints = false
