@@ -65,7 +65,7 @@ import UIKit
         
         NSLayoutConstraint.activate([
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            shadowView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            shadowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             shadowView.widthAnchor.constraint(equalToConstant: 29),
             shadowView.heightAnchor.constraint(equalToConstant: 29),
 

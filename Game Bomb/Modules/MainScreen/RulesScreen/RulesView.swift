@@ -44,7 +44,7 @@ final class RulesView: UIView {
         let label = UILabel()
         label.text = "Правила игры"
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .customDarkGray
         label.font = .custom(font: .bold, size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
