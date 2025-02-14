@@ -65,24 +65,25 @@ import UIKit
         
         NSLayoutConstraint.activate([
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            shadowView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            shadowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             shadowView.widthAnchor.constraint(equalToConstant: 29),
             shadowView.heightAnchor.constraint(equalToConstant: 29),
 
-            numberLabel.centerXAnchor.constraint(equalTo: shadowView.centerXAnchor),
-            numberLabel.centerYAnchor.constraint(equalTo: shadowView.centerYAnchor),
+//            numberLabel.centerXAnchor.constraint(equalTo: shadowView.centerXAnchor),
+//            numberLabel.centerYAnchor.constraint(equalTo: shadowView.centerYAnchor),
             numberLabel.widthAnchor.constraint(equalToConstant: 29),
             numberLabel.heightAnchor.constraint(equalToConstant: 29),
+            numberLabel.topAnchor.constraint(equalTo: shadowView.topAnchor),
 
             descriptionLabel.leadingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
 //            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             
-            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
             imageButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageButton.heightAnchor.constraint(equalToConstant: 20),
-            imageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            imageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8)
         ])
     }
      func configureCell(number: Int, description: NSAttributedString?, image: UIImage?) {

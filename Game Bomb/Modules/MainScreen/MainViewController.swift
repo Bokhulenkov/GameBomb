@@ -149,7 +149,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 1 {
-            return 100
+            return 90
         }
             return UITableView.automaticDimension
     }
