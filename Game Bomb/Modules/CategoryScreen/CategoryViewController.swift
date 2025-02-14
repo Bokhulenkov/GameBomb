@@ -9,12 +9,12 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     private var categories: [Category] = [
-        Category(name: "О Разном", icon: UIImage(named: "different"), questions: []),
-        Category(name: "Спорт и хобби", icon: UIImage(named: "sport"), questions: []),
-        Category(name: "Про жизнь", icon: UIImage(named: "life"), questions: []),
-        Category(name: "Знаменитости", icon: UIImage(named: "celebrities"), questions: []),
-        Category(name: "Искусство и кино", icon: UIImage(named: "artAndCinema"), questions: []),
-        Category(name: "Природа", icon: UIImage(named: "nature"), questions: [])
+        Category(name: "О Разном", icon: UIImage(named: "different"), label: "anotherQuestions"),
+        Category(name: "Спорт и хобби", icon: UIImage(named: "sport"), label: "sportQuestions"),
+        Category(name: "Про жизнь", icon: UIImage(named: "life"), label: "lifeQuestions"),
+        Category(name: "Знаменитости", icon: UIImage(named: "celebrities"), label: "famousQuestions"),
+        Category(name: "Искусство и кино", icon: UIImage(named: "artAndCinema"), label: "filmQuestions"),
+        Category(name: "Природа", icon: UIImage(named: "nature"), label: "natureQuestions")
     ]
     
     // MARK: - GUI Variables
@@ -47,7 +47,7 @@ class CategoryViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .customwhite
+        view.backgroundColor = .customWhite
         
         setupNavigationBar()
         setupUI()
@@ -127,7 +127,10 @@ extension CategoryViewController: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegate
 extension CategoryViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Выбрана ячейка: \(categories[indexPath.row].label)")
+        UserQuestions.shared.saveCategories([categories[indexPath.row].label])
+    }
 }
 
 //MARK: -  UICollectionViewDelegateFlowLayout

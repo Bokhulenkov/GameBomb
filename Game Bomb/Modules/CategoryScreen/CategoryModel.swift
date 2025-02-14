@@ -10,7 +10,7 @@ import UIKit
 struct Category {
     let name: String
     let icon: UIImage?
-    let questions: [Questions]
+    let label: String
 }
 
 struct Questions {

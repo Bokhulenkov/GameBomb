@@ -22,6 +22,8 @@ final class GameModel {
     // MARK: - Properties
     weak var delegate: GameModelDelegate?
     
+    private var questions = MockData()
+    
     private var timer: Timer?
     private var currentSeconds = 0
     private let secondsForGame = [10, 15, 20, 25, 30, 35, 40]
@@ -46,6 +48,11 @@ final class GameModel {
     func prepareSounds() {
         loadSound(name: "soundBomb", player: &tickAudioPlayer)
         loadSound(name: "soundBoom", player: &audioPlayer)
+    }
+    
+    func prepareQuestions() -> String {
+        let questions = UserQuestions.shared.getSelectedQuestions()
+        return questions.randomElement() ?? "Назовите вид Зимнего спорта"
     }
     
     func startGame() {

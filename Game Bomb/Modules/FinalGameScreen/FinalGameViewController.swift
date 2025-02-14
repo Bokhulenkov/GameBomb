@@ -40,7 +40,7 @@ class FinalGameViewController: UIViewController {
 
 extension FinalGameViewController: FinalViewDelegate {
     func anotherQuestionButtonTapped() {
-        print("Выбрано другое наказание")
+        finalView.questuonLabel.text = finalModel.prepeareLoss()
     }
     
     func startAgainButtonTapped() {

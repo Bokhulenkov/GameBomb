@@ -16,6 +16,8 @@ final class FinalView: UIView {
     // MARK: - Properties
     weak var delegate: FinalViewDelegate?
     
+    let finalModel = FinalModel()
+    
     // UI Elements
     lazy var backImageView: UIImageView = {
         let backImageView = UIImageView()
@@ -39,9 +41,9 @@ final class FinalView: UIView {
     
     lazy var questuonLabel: UILabel = {
         let questuonLabel = UILabel()
-        questuonLabel.text = "*Наказание/Другое наказание*"
+        questuonLabel.text = finalModel.prepeareLoss()
         questuonLabel.textColor = UIColor(named: "customDarkGrayColor")
-        questuonLabel.font = .custom(font: .medium, size: 28)
+        questuonLabel.font = .custom(font: .medium, size: 20)
         questuonLabel.textAlignment = .center
         questuonLabel.numberOfLines = 0
         questuonLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +62,7 @@ final class FinalView: UIView {
         let anotherQuestionButton = UIButton()
         anotherQuestionButton.setTitle("Другое наказание", for: .normal)
         anotherQuestionButton.setTitleColor(UIColor(named: "customDarkGrayColor"), for: .normal)
-        anotherQuestionButton.backgroundColor = UIColor(named: "customyellowColor")
+        anotherQuestionButton.backgroundColor = UIColor(named: "customYellowColor")
         anotherQuestionButton.titleLabel?.font = .custom(font: .medium, size: 20)
         anotherQuestionButton.isHidden = false
         anotherQuestionButton.layer.cornerRadius = 10
@@ -73,7 +75,7 @@ final class FinalView: UIView {
         let startAgainButton = UIButton()
         startAgainButton.setTitle("Начать заново", for: .normal)
         startAgainButton.setTitleColor(UIColor(named: "customDarkGrayColor"), for: .normal)
-        startAgainButton.backgroundColor = UIColor(named: "customyellowColor")
+        startAgainButton.backgroundColor = UIColor(named: "customYellowColor")
         startAgainButton.titleLabel?.font = .custom(font: .medium, size: 20)
         startAgainButton.isHidden = false
         startAgainButton.layer.cornerRadius = 10

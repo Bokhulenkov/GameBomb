@@ -29,7 +29,7 @@ final class GameView: UIView {
     lazy var gameLabel: UILabel = {
         let gameLabel = UILabel()
         gameLabel.text = "Игра"
-        gameLabel.textColor = UIColor(named: "customDarkGrayColor")
+        gameLabel.textColor = .customDarkGray
         gameLabel.font = .custom(font: .bold, size: 30)
         gameLabel.textAlignment = .center
         gameLabel.numberOfLines = 0
@@ -40,7 +40,7 @@ final class GameView: UIView {
     lazy var questuonLabel: UILabel = {
         let questuonLabel = UILabel()
         questuonLabel.text = "Нажмите 'Запустить' чтобы начать игру"
-        questuonLabel.textColor = UIColor(named: "customDarkGrayColor")
+        questuonLabel.textColor = .customDarkGray
         questuonLabel.font = .custom(font: .medium, size: 28)
         questuonLabel.textAlignment = .center
         questuonLabel.numberOfLines = 0
@@ -60,7 +60,7 @@ final class GameView: UIView {
         let startButton = UIButton()
         startButton.setTitle("Запустить", for: .normal)
         startButton.setTitleColor(UIColor(named: "customDarkGrayColor"), for: .normal)
-        startButton.backgroundColor = UIColor(named: "customYellowColor")
+        startButton.backgroundColor = .customYellow
         startButton.titleLabel?.font = .custom(font: .medium, size: 20)
         startButton.isHidden = false
         startButton.layer.cornerRadius = 10
@@ -83,7 +83,7 @@ final class GameView: UIView {
     
     // MARK: - Setup
     private func setupUI() {
-        backgroundColor = UIColor(named: "customGrayColor")
+        backgroundColor = .customGray
         
         addSubview(backImageView)
         addSubview(startButton)
