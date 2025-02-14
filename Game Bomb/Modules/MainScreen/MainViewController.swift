@@ -15,6 +15,7 @@ final class MainViewController: UIViewController {
         let view = RulesView()
         view.contentMode = .bottom
         view.isUserInteractionEnabled = true
+        view.isMultipleTouchEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -45,6 +46,10 @@ final class MainViewController: UIViewController {
         rulesView.isHidden = true
         rulesView.tableView.dataSource = self
         rulesView.tableView.delegate = self
+       
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
+        swipeDown.direction = .down
+        view.addGestureRecognizer(swipeDown)
         
         setupView()
         setupConstraints()
@@ -55,13 +60,23 @@ final class MainViewController: UIViewController {
     }
     
     //    MARK: - Methods
+    @objc func swipeView(_ sender: UISwipeGestureRecognizer) {
+        UIView.animate(withDuration: 1.0) {
+            if sender.direction == .down {
+                self.rulesView.frame = CGRect(x: 0, y: self.view.frame.size.height, width: self.rulesView.frame.size.width, height: self.rulesView.frame.size.height)
+            }
+        }
+    }
     @objc func didTapSettingButton() {
         let categoryVC = CategoryViewController()
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
     @objc func didTapQuestionButton() {
-
+        UIView.animate(withDuration: 1.0) {
+            self.rulesView.frame = CGRect(x: 0, y: 0, width: self.rulesView.frame.size.width, height: self.rulesView.frame.size.height)
+            self.rulesView.isHidden = false
+        }
         rulesView.isHidden = false
         rulesView.backgroundColor = .customWhite
         view.addSubview(rulesView)
@@ -133,7 +148,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        
+        if indexPath.section == 0 && indexPath.row == 1 {
+            return 100
+        }
+        return 70.0
     }
     
     private func createAttributedText(for text: String) -> NSAttributedString {
