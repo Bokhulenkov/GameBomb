@@ -29,9 +29,7 @@ final class GameViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if isMovingFromParent {
             gameModel.exitGame()
-        }
     }
     
     // MARK: - Setup
@@ -50,6 +48,11 @@ final class GameViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "customDarkGrayColor")
         navigationItem.rightBarButtonItem?.isHidden = false
         navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        navigationItem.backAction = UIAction(handler: { _ in
+            let _ = MainViewController()
+            self.navigationController?.popToRootViewController(animated: true)
+        })
     }
     
     // MARK: - Actions
@@ -65,7 +68,6 @@ extension GameViewController: GameViewDelegate {
         gameView.questuonLabel.text = "*Вопрос из категории*"
         gameView.questuonLabel.font = .custom(font: .bold, size: 28)
         gameModel.startGame()
-        print("Кнопка нажата")
     }
 }
 
@@ -114,7 +116,11 @@ extension GameViewController: GameModelDelegate {
         let finalVC = FinalGameViewController()
         navigationController?.pushViewController(finalVC, animated: false)
         gameView.questuonLabel.isHidden = true
-        navigationItem.rightBarButtonItem?.isHidden = true
+        
+//        gameView.bombImage.isHidden = false
+//        gameView.startButton.isHidden = false
+//        gameView.questuonLabel.isHidden = false
+//        gameView.questuonLabel.text = "Нажмите 'Запустить' чтобы начать игру"
     }
     
     @objc private func resumeButtonTapped() {
