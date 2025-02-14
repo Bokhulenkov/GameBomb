@@ -81,7 +81,7 @@ final class MainViewController: UIViewController {
         rulesView.backgroundColor = .customWhite
         view.addSubview(rulesView)
         NSLayoutConstraint.activate([
-            rulesView.heightAnchor.constraint(equalToConstant: 650),
+            rulesView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.73),
             rulesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             rulesView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             rulesView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -146,13 +146,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
+   
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath.section == 0 && indexPath.row == 1 {
+        if indexPath.row == 1 {
             return 100
         }
-        return 70.0
+            return UITableView.automaticDimension
     }
     
     private func createAttributedText(for text: String) -> NSAttributedString {
