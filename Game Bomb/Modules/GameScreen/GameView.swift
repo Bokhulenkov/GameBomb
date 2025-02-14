@@ -20,7 +20,7 @@ final class GameView: UIView {
     lazy var backImageView: UIImageView = {
         let backImageView = UIImageView()
         backImageView.image = UIImage(named: "gameBackView")
-        backImageView.contentMode = .scaleAspectFit
+        backImageView.contentMode = .scaleAspectFill
         backImageView.isUserInteractionEnabled = false
         backImageView.translatesAutoresizingMaskIntoConstraints = false
         return backImageView
@@ -126,3 +126,4 @@ final class GameView: UIView {
         delegate?.startButtonTapped()
     }
 }
+

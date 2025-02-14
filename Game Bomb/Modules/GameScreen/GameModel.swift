@@ -31,7 +31,7 @@ final class GameModel {
     
     var animation: DotLottieAnimation?
     var animationView: UIView?
-    private let animationDuration: Float = 7.55
+    private let animationDuration: Float = 7.65
     
     var audioPlayer: AVAudioPlayer?
     var tickAudioPlayer: AVAudioPlayer?
