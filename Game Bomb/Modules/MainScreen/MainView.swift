@@ -19,7 +19,7 @@ final class MainView: UIView {
     //    MARK: - Private Properties
     private let backImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "backgroundMain")
+        image.image = .CustomImage.mainBackground
         image.contentMode = .scaleAspectFill
         image.isUserInteractionEnabled = true
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -28,10 +28,10 @@ final class MainView: UIView {
     
     private let gameLabel: UILabel = {
         let label = UILabel()
-        label.text = "ИГРА ДЛЯ КОМПАНИИ"
+        label.text = K.firstTitle
         label.font = .custom(font: .bold, size: 28)
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .CustomColors.textPrimaryColor
         label.layer.shadowColor = UIColor.black.cgColor
         label.layer.shadowOffset = CGSize(width: 0, height: 4)
         label.layer.shadowRadius = 4
@@ -43,10 +43,10 @@ final class MainView: UIView {
     
     private let gameBombLabel: UILabel = {
         let label = UILabel()
-        label.text = "БОМБА"
+        label.text = K.secondTitle
         label.font = .custom(font: .bold, size: 48)
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .CustomColors.textPrimaryColor
         label.layer.shadowColor = UIColor.black.cgColor
         label.layer.shadowOffset = CGSize(width: 2, height: 4)
         label.layer.shadowRadius = 4
@@ -58,7 +58,7 @@ final class MainView: UIView {
     
     private let bombImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "bombMainScreen")
+        image.image = .CustomImage.bombMainScreen
         image.contentMode = .scaleAspectFill
         image.isUserInteractionEnabled = false
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -76,10 +76,10 @@ final class MainView: UIView {
     
     private let startButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Старт игры", for: .normal)
+        button.setTitle(K.startTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customWhite
+        button.backgroundColor = .CustomColors.white
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -92,10 +92,10 @@ final class MainView: UIView {
     
     private let categoryButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Категории", for: .normal)
+        button.setTitle(K.categoryTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customWhite
+        button.backgroundColor = .CustomColors.white
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 4)

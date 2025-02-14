@@ -20,15 +20,7 @@ final class MainViewController: UIViewController {
         return view
     }()
     
-    private let rules = [
-        ("Все игроки становятся в круг.", nil),
-        ("Первый игрок берет телефон и нажимает кнопку:", UIImage(named: "startButton")),
-        ("На экране появляется вопрос “Назовите Фрукт”.", nil),
-        ("Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку.", nil),
-        ("Игроки по кругу отвечают на один и тот же вопрос до тех пор, пока не взорвется бомба.", nil),
-        ("Проигравшим считается тот, в чьих руках взорвалась бомба.", nil),
-        ("Если выбран режим игры “С Заданиями”, то проигравший выполняет задание.", nil)
-    ]
+    private let rules = K.rules
     
     //    MARK: - LifeCycle
     override func loadView() {
@@ -38,8 +30,8 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting"), style: .done, target: self, action: #selector(didTapSettingButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "questionRed1"), style: .plain, target: self, action: #selector(didTapQuestionButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .CustomImage.setting, style: .done, target: self, action: #selector(didTapSettingButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .CustomImage.redQuestion, style: .plain, target: self, action: #selector(didTapQuestionButton))
         navigationItem.rightBarButtonItem?.tintColor = .red
         
         rulesView.delegate = self
@@ -56,7 +48,7 @@ final class MainViewController: UIViewController {
         buttonPushed()
         
         navigationItem.backButtonDisplayMode = .minimal
-        navigationController?.navigationBar.tintColor = UIColor(named: "customPrimaryColor")
+        navigationController?.navigationBar.tintColor = .CustomColors.textPrimaryColor
     }
     
     //    MARK: - Methods
@@ -78,7 +70,7 @@ final class MainViewController: UIViewController {
             self.rulesView.isHidden = false
         }
         rulesView.isHidden = false
-        rulesView.backgroundColor = .customWhite
+        rulesView.backgroundColor = .CustomColors.white
         view.addSubview(rulesView)
         NSLayoutConstraint.activate([
             rulesView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.73),

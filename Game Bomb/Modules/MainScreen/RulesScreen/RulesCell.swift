@@ -9,7 +9,7 @@ import UIKit
 
  class RulesCell: UITableViewCell {
     
-    static let identifier = "RulesCellIdentifier"
+     static let identifier = RulesCell.description()
     
     private let shadowView: UIView = {
         let view = UIView()
@@ -24,7 +24,7 @@ import UIKit
     
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .mainBackground
+        label.backgroundColor = .CustomColors.mainBackground
         label.font = .custom(font: .bold, size: 16)
         label.textAlignment = .center
         label.layer.cornerRadius = 15

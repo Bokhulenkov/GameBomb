@@ -42,12 +42,12 @@ final class GameViewController: UIViewController {
     
     private func setupNavigation() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "pause.circle"),
+            image: UIImage(systemName: K.Player.pause),
             style: .done,
             target: self,
             action: #selector(pauseButtonTapped)
         )
-        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "customDarkGrayColor")
+        navigationItem.rightBarButtonItem?.tintColor = .CustomColors.darkGray
         navigationItem.rightBarButtonItem?.isHidden = false
         navigationItem.rightBarButtonItem?.isEnabled = false
         
@@ -104,12 +104,12 @@ extension GameViewController: GameModelDelegate {
     
     func gameDidPause() {
         navigationItem.rightBarButtonItem?.isHidden = false
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.circle")
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: K.Player.play)
         navigationItem.rightBarButtonItem?.action = #selector(resumeButtonTapped)
     }
     
     func gameDidResume() {
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.circle")
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: K.Player.pause)
         navigationItem.rightBarButtonItem?.action = #selector(pauseButtonTapped)
         navigationItem.rightBarButtonItem?.isHidden = false
     }

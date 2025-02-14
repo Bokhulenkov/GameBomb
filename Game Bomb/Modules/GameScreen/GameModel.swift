@@ -38,16 +38,16 @@ final class GameModel {
     
     // MARK: - Methods
     func setupAnimation() {
-        guard URL(string: "https://lottie.host/283b3c79-ebb6-4439-a235-5b54cc15f7ad/zlrIDXcPgo.lottie") != nil else { return }
+        guard URL(string: LottieConstant.url) != nil else { return }
         
-        animation = DotLottieAnimation(webURL: "https://lottie.host/283b3c79-ebb6-4439-a235-5b54cc15f7ad/zlrIDXcPgo.lottie", config: AnimationConfig(autoplay: false, loop: false))
+        animation = DotLottieAnimation(webURL: LottieConstant.url, config: AnimationConfig(autoplay: false, loop: false))
         animationView = animation?.view()
         animationView?.isHidden = false
     }
     
     func prepareSounds() {
-        loadSound(name: "soundBomb", player: &tickAudioPlayer)
-        loadSound(name: "soundBoom", player: &audioPlayer)
+        loadSound(name: SoundFiles.soundBomb, player: &tickAudioPlayer)
+        loadSound(name: SoundFiles.soundBoom, player: &audioPlayer)
     }
     
     func prepareQuestions() -> String {

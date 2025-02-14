@@ -19,7 +19,7 @@ final class GameView: UIView {
     // UI Elements
     lazy var backImageView: UIImageView = {
         let backImageView = UIImageView()
-        backImageView.image = UIImage(named: "gameBackView")
+        backImageView.image = .CustomImage.grayBackground
         backImageView.contentMode = .scaleAspectFill
         backImageView.isUserInteractionEnabled = false
         backImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,8 +28,8 @@ final class GameView: UIView {
     
     lazy var gameLabel: UILabel = {
         let gameLabel = UILabel()
-        gameLabel.text = "Игра"
-        gameLabel.textColor = .customDarkGray
+        gameLabel.text = K.gameTitle
+        gameLabel.textColor = .CustomColors.darkGray
         gameLabel.font = .custom(font: .bold, size: 30)
         gameLabel.textAlignment = .center
         gameLabel.numberOfLines = 0
@@ -39,8 +39,8 @@ final class GameView: UIView {
     
     lazy var questuonLabel: UILabel = {
         let questuonLabel = UILabel()
-        questuonLabel.text = "Нажмите 'Запустить' чтобы начать игру"
-        questuonLabel.textColor = .customDarkGray
+        questuonLabel.text = K.questionTitle
+        questuonLabel.textColor = .CustomColors.darkGray
         questuonLabel.font = .custom(font: .medium, size: 28)
         questuonLabel.textAlignment = .center
         questuonLabel.numberOfLines = 0
@@ -50,7 +50,7 @@ final class GameView: UIView {
     
     lazy var bombImage: UIImageView = {
         let bombImage = UIImageView()
-        bombImage.image = UIImage(named: "BombImage")
+        bombImage.image = .CustomImage.bomb
         bombImage.isHidden = false
         bombImage.translatesAutoresizingMaskIntoConstraints = false
         return bombImage
@@ -58,9 +58,9 @@ final class GameView: UIView {
     
     lazy var startButton: UIButton = {
         let startButton = UIButton()
-        startButton.setTitle("Запустить", for: .normal)
-        startButton.setTitleColor(UIColor(named: "customDarkGrayColor"), for: .normal)
-        startButton.backgroundColor = .customYellow
+        startButton.setTitle(K.startButtonTitle, for: .normal)
+        startButton.setTitleColor(.CustomColors.darkGray, for: .normal)
+        startButton.backgroundColor = .CustomColors.yellow
         startButton.titleLabel?.font = .custom(font: .medium, size: 20)
         startButton.isHidden = false
         startButton.layer.cornerRadius = 10
@@ -83,7 +83,7 @@ final class GameView: UIView {
     
     // MARK: - Setup
     private func setupUI() {
-        backgroundColor = .customGray
+        backgroundColor = .CustomColors.gray
         
         addSubview(backImageView)
         addSubview(startButton)

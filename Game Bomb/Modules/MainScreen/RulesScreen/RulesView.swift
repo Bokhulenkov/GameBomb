@@ -17,7 +17,7 @@ final class RulesView: UIView {
     
     lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "helpBackground")
+        imageView.image = .CustomImage.helpBackground
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,16 +35,16 @@ final class RulesView: UIView {
     }()
     private let button: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "backLine"), for: .normal)
+        button.setImage(.CustomImage.line, for: .normal)
         button.contentMode = .top
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     private var title: UILabel = {
         let label = UILabel()
-        label.text = "Правила игры"
+        label.text = K.rulesTitle
         label.textAlignment = .center
-        label.textColor = .customDarkGray
+        label.textColor = .CustomColors.darkGray
         label.font = .custom(font: .bold, size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -66,7 +66,7 @@ final class RulesView: UIView {
         button.addTarget(self, action: #selector(swipeBackButtonTapped), for: .touchUpInside)
     }
     private func setupViews() {
-        backgroundColor = .customGray
+        backgroundColor = .CustomColors.gray
         layer.cornerRadius = 30
         layer.borderWidth = 0.5
         layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
