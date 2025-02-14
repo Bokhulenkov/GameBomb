@@ -95,7 +95,7 @@ final class RulesView: UIView {
             tableView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: -30),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
           
         ])
     }
