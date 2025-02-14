@@ -51,14 +51,8 @@ final class GameModel {
     }
     
     func prepareQuestions() -> String {
-        let categories = [questions.sportQuestions, questions.anotherQuestions, questions.famousQuestions, questions.filmQuestions, questions.lifeQuestions, questions.natureQuestions]
-        
-        let questions = categories.randomElement()
-        return questions?.randomElement() ?? "Назовите вид Зимнего спорта"
-//        let category: [[String]]
-//        category.append([String])
-//        let question: [String]
-//        return question.randomElement() ?? "error #231243"
+        let questions = UserQuestions.shared.getSelectedQuestions()
+        return questions.randomElement() ?? "Назовите вид Зимнего спорта"
     }
     
     func startGame() {
