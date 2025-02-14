@@ -118,11 +118,6 @@ extension GameViewController: GameModelDelegate {
         let finalVC = FinalGameViewController()
         navigationController?.pushViewController(finalVC, animated: false)
         gameView.questuonLabel.isHidden = true
-        
-//        gameView.bombImage.isHidden = false
-//        gameView.startButton.isHidden = false
-//        gameView.questuonLabel.isHidden = false
-//        gameView.questuonLabel.text = "Нажмите 'Запустить' чтобы начать игру"
     }
     
     @objc private func resumeButtonTapped() {
