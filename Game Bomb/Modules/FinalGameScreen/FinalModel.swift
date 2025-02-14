@@ -12,6 +12,7 @@ import DotLottie
 
 final class FinalModel {
     // MARK: - Properties
+    private let loss = MockData()
     
     private var timer: Timer?
     private var currentSeconds = 0
@@ -30,6 +31,11 @@ final class FinalModel {
         timer?.invalidate()
         tickAudioPlayer?.stop()
         let _ = animation?.stop()
+    }
+    
+    func prepeareLoss() -> String {
+        let losses = loss.lossGame
+        return losses.randomElement() ?? "Следущий раунд без наказания!"
     }
     
     private func setupAnimation() {
