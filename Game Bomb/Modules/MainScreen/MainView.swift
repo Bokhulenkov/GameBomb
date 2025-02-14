@@ -21,7 +21,7 @@ final class MainView: UIView {
     //    MARK: - Private Properties
     private let backImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "background")
+        image.image = UIImage(named: "backgroundMain")
         image.contentMode = .scaleAspectFit
         image.isUserInteractionEnabled = true
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ final class MainView: UIView {
         button.setTitle("Старт игры", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = UIColor(named: "customwhiteColor")
+        button.backgroundColor = .customwhite
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -98,7 +98,7 @@ final class MainView: UIView {
         button.setTitle("Категории", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = UIColor(named: "customwhiteColor")
+        button.backgroundColor = .customwhite
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
