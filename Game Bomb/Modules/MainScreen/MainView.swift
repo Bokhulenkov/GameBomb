@@ -8,40 +8,22 @@
 import UIKit
 
 protocol MainViewDelegate: AnyObject {
-    func didTapSettingButton()
-    func didTapQuestionButton()
     func didTapStartButton()
     func didTapCategoryButton()
 }
 
 final class MainView: UIView {
     //    MARK: - Properties
-    var delegate: MainViewDelegate?
+    weak var delegate: MainViewDelegate?
     
     //    MARK: - Private Properties
     private let backImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "backgroundMain")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.isUserInteractionEnabled = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-    }()
-    
-    private let settingButton: UIButton = {
-        let button = UIButton ()
-        button.setImage(UIImage(named: "setting"), for: .normal)
-        button.addTarget(MainView.self, action: #selector(didTapSettingButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let questionButton: UIButton  = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "questionRed"), for: .normal)
-        button.addTarget(MainView.self, action: #selector(didTapQuestionButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
     }()
     
     private let gameLabel: UILabel = {
@@ -50,6 +32,11 @@ final class MainView: UIView {
         label.font = .custom(font: .bold, size: 28)
         label.textAlignment = .center
         label.textColor = .black
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 4)
+        label.layer.shadowRadius = 4
+        label.layer.shadowOpacity = 0.4
+        label.layer.masksToBounds = false
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,6 +47,11 @@ final class MainView: UIView {
         label.font = .custom(font: .bold, size: 48)
         label.textAlignment = .center
         label.textColor = .black
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 2, height: 4)
+        label.layer.shadowRadius = 4
+        label.layer.shadowOpacity = 0.4
+        label.layer.masksToBounds = false
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -87,8 +79,13 @@ final class MainView: UIView {
         button.setTitle("Старт игры", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customwhite
+        button.backgroundColor = .customWhite
         button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.25
+        button.layer.masksToBounds = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -98,8 +95,13 @@ final class MainView: UIView {
         button.setTitle("Категории", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customwhite
+        button.backgroundColor = .customWhite
         button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.25
+        button.layer.masksToBounds = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -118,11 +120,17 @@ final class MainView: UIView {
     }
     
     //    MARK: - Methods
+    private func setupShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 0.25
+        
+        layer.masksToBounds = false
+    }
     private func setupUI() {
         backgroundColor = .mainBackground
         addSubview(backImageView)
-        backImageView.addSubview(settingButton)
-        backImageView.addSubview(questionButton)
         backImageView.addSubview(gameLabel)
         backImageView.addSubview(gameBombLabel)
         backImageView.addSubview(bombImageView)
@@ -142,16 +150,6 @@ final class MainView: UIView {
             backImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            settingButton.topAnchor.constraint(equalTo: topAnchor,constant: 50),
-            settingButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
-            settingButton.heightAnchor.constraint(equalToConstant: 35),
-            settingButton.widthAnchor.constraint(equalToConstant: 35),
-            
-            questionButton.topAnchor.constraint(equalTo: topAnchor,constant: 50),
-            questionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35),
-            questionButton.heightAnchor.constraint(equalToConstant: 35),
-            questionButton.widthAnchor.constraint(equalToConstant: 35),
             
             gameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor,constant: 20),
             gameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
@@ -177,12 +175,6 @@ final class MainView: UIView {
 
 // MARK: - Extensions MainView
 extension MainView {
-    @objc func didTapSettingButton() {
-        delegate?.didTapSettingButton()
-    }
-    @objc func didTapQuestionButton() {
-        delegate?.didTapQuestionButton()
-    }
     @objc func didTapStartButton() {
         delegate?.didTapStartButton()
     }
