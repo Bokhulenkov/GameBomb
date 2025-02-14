@@ -104,7 +104,7 @@ class CategoryViewController: UIViewController {
         if let sheet = bottomSheetVC.sheetPresentationController {
             sheet.detents = [.custom { _ in
                 return UIScreen.main.bounds.height * 0.75
-            }]
+            }, .large()]
         }
         present(bottomSheetVC, animated: true)
     }
