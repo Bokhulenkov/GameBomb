@@ -101,7 +101,7 @@ final class GameView: UIView {
             
             gameLabel.centerXAnchor.constraint(equalTo: backImageView.centerXAnchor),
             gameLabel.topAnchor.constraint(equalTo: backImageView.topAnchor, constant: 60),
-            gameLabel.heightAnchor.constraint(equalToConstant: 40),
+            gameLabel.heightAnchor.constraint(equalToConstant: 45),
             gameLabel.widthAnchor.constraint(equalToConstant: 185),
             
             questuonLabel.centerXAnchor.constraint(equalTo: backImageView.centerXAnchor),
