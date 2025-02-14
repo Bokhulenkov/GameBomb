@@ -22,7 +22,7 @@ final class MainView: UIView {
     private let backImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "backgroundMain")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.isUserInteractionEnabled = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
