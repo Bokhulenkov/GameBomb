@@ -72,6 +72,16 @@ final class SettingTimeView: SettingContainerView {
         setupConstraints()
     }
     
+    private func selectSavedTime() {
+        let savedTime = GameSettings.shared.getGameSettings().time
+        if let selectedIndex = SettingTimeType.allCases.firstIndex(where: { $0.timeValue == savedTime }) {
+            let indexPath = IndexPath(item: selectedIndex, section: 0)
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+            let cell = collectionView.cellForItem(at: indexPath)
+            cell?.backgroundColor = .CustomColors.yellow
+        }
+    }
+    
     private func setupConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +118,8 @@ extension SettingTimeView: UICollectionViewDataSource {
         let type = SettingTimeType.allCases[indexPath.item]
         cell.configure(with: type)
         
+        selectSavedTime()
+        
         return cell
     }
 }
@@ -119,7 +131,16 @@ extension SettingTimeView: UICollectionViewDelegate {
         let selectedTime = tapedTimeButton.timeValue
         print("Продолжительность игры: \(selectedTime)")
         GameSettings.shared.saveGameSettings(Settings(time: selectedTime))
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = .CustomColors.yellow
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = .CustomColors.darkGray
+    }
+    
 }
 
 //MARK: -  UICollectionViewDelegateFlowLayout
