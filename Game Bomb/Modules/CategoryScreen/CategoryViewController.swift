@@ -47,7 +47,7 @@ class CategoryViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .customwhite
+        view.backgroundColor = .CustomColors.white
         
         setupNavigationBar()
         setupUI()
@@ -121,7 +121,7 @@ extension CategoryViewController: UICollectionViewDataSource {
         let category = categories[indexPath.item]
         cell.configure(with: category)
         
-        if UserQuestions.shared.checkCategoryExists(category: category.label) {
+        if UserQuestionsService.shared.checkCategoryExists(category: category.label) {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
         }
         
@@ -132,11 +132,11 @@ extension CategoryViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension CategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UserQuestions.shared.appendCategory(categories[indexPath.row].label)
+        UserQuestionsService.shared.appendCategory(categories[indexPath.row].label)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        UserQuestions.shared.removeCategory(categories[indexPath.row].label)
+        UserQuestionsService.shared.removeCategory(categories[indexPath.row].label)
     }
 }
 
