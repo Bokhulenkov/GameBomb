@@ -36,6 +36,7 @@ final class SettingTimeView: SettingContainerView {
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.allowsSelection = true
         
         return collectionView
     }()
