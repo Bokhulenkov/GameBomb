@@ -16,13 +16,13 @@ enum SettingTimeType: String, CaseIterable {
     var timeValue: Int {
         switch self {
         case .short:
-            return 5
-        case .medium:
             return 10
+        case .medium:
+            return 20
         case .long:
-            return 15
+            return 45
         case .random:
-            return [5, 10, 15, 20, 25, 30].randomElement() ?? 25
+            return [10, 15, 20, 25, 30, 35, 40, 45].randomElement() ?? 25
         }
     }
 }
