@@ -59,8 +59,9 @@ final class MainViewController: UIViewController {
             }
         }
     }
+    
     @objc func didTapSettingButton() {
-        let categoryVC = CategoryViewController()
+        let categoryVC = SettingViewController()
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
