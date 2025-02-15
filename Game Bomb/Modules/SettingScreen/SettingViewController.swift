@@ -50,7 +50,7 @@ class SettingViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .customwhite
+        view.backgroundColor = .CustomColors.white
         
         setupNavigationBar()
         setupUI()

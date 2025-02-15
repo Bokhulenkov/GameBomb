@@ -79,7 +79,7 @@ final class MainViewController: UIViewController {
             self.rulesView.isHidden = false
         }
         rulesView.isHidden = false
-        rulesView.backgroundColor = .customwhite
+        rulesView.backgroundColor = .CustomColors.white
         view.addSubview(rulesView)
         NSLayoutConstraint.activate([
             rulesView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.73),

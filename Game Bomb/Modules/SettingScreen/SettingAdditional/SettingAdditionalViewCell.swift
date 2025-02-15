@@ -22,7 +22,7 @@ class SettingAdditionalViewCell: UICollectionViewCell {
         let view = UISwitch()
         view.isOn = true
         
-        view.onTintColor = UIColor.customyellow
+        view.onTintColor = .CustomColors.yellow
         view.thumbTintColor = UIColor.white
         view.tintColor = UIColor.customSecondary
         
