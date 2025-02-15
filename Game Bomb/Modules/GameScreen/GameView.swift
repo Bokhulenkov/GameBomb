@@ -16,7 +16,6 @@ final class GameView: UIView {
     // MARK: - Properties
     weak var delegate: GameViewDelegate?
     
-    // UI Elements
     lazy var backImageView: UIImageView = {
         let backImageView = UIImageView()
         backImageView.image = .CustomImage.grayBackground
@@ -72,7 +71,6 @@ final class GameView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupUI()
         setupConstraints()
     }
@@ -81,17 +79,29 @@ final class GameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup
+    // MARK: - Methods
     private func setupUI() {
         backgroundColor = .CustomColors.gray
         
         addSubview(backImageView)
         addSubview(startButton)
-        backImageView.addSubview(gameLabel)
-        backImageView.addSubview(questuonLabel)
-        backImageView.addSubview(bombImage)
+        [
+            gameLabel,
+            questuonLabel,
+            bombImage
+        ].forEach {
+            backImageView.addSubview($0)
+        }
     }
     
+    // MARK: - Actions
+    @objc private func startButtonAction() {
+        delegate?.startButtonTapped()
+    }
+}
+
+// MARK: - Extensions Constraints
+extension GameView {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             backImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -120,10 +130,4 @@ final class GameView: UIView {
             startButton.widthAnchor.constraint(equalToConstant: 330)
         ])
     }
-    
-    // MARK: - Actions
-    @objc private func startButtonAction() {
-        delegate?.startButtonTapped()
-    }
 }
-

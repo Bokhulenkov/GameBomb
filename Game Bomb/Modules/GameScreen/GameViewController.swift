@@ -13,8 +13,6 @@ final class GameViewController: UIViewController {
     private let gameView = GameView()
     private let gameModel = GameModel()
     
-    var questionCategories = MockData()
-    
     // MARK: - Lifecycle
     override func loadView() {
         view = gameView
@@ -22,7 +20,6 @@ final class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupDelegates()
         setupNavigation()
         gameModel.setupAnimation()
@@ -31,10 +28,10 @@ final class GameViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-            gameModel.exitGame()
+        gameModel.exitGame()
     }
     
-    // MARK: - Setup
+    // MARK: - Methods
     private func setupDelegates() {
         gameView.delegate = self
         gameModel.delegate = self
@@ -63,7 +60,7 @@ final class GameViewController: UIViewController {
     }
 }
 
-// MARK: - GameViewDelegate
+// MARK: - Extensions GameViewDelegate
 extension GameViewController: GameViewDelegate {
     func startButtonTapped() {
         gameView.startButton.isHidden = true
@@ -73,7 +70,7 @@ extension GameViewController: GameViewDelegate {
     }
 }
 
-// MARK: - GameModelDelegate
+// MARK: - Extensions GameModelDelegate
 extension GameViewController: GameModelDelegate {
     func timerDidUpdate(seconds: Int) {
         gameModel.tickAudioPlayer?.play()

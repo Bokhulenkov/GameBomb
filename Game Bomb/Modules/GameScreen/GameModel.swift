@@ -22,8 +22,6 @@ final class GameModel {
     // MARK: - Properties
     weak var delegate: GameModelDelegate?
     
-    private var questions = MockData()
-    
     private var timer: Timer?
     private var currentSeconds = 0
     private let secondsForGame = [10, 15, 20, 25, 30, 35, 40]
@@ -84,7 +82,9 @@ final class GameModel {
     }
     
     private func loadSound(name: String, player: inout AVAudioPlayer?) {
-        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else { return }
+        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
+            return
+        }
         let url = URL(fileURLWithPath: path)
         do {
             player = try AVAudioPlayer(contentsOf: url)
@@ -105,6 +105,7 @@ final class GameModel {
         )
     }
     
+    //    MARK: - Actions
     @objc private func updateTimer() {
         currentSeconds += 1
         delegate?.timerDidUpdate(seconds: currentSeconds)
