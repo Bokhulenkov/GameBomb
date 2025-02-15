@@ -112,7 +112,7 @@ extension RulesView {
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            tableView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: -30),
+            tableView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: -6),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)

@@ -28,12 +28,8 @@ final class GameSettings {
     }
     
     func getGameSettings() {
-        let decoder = JSONDecoder()
         
-        if let gameSettings = UserDefaults.standard.data(forKey: key) {
-//           let settings = try? decoder.decode(gameSettings, from: key)
     }
-    
 }
 
 struct Settings: Codable {
