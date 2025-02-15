@@ -7,8 +7,26 @@ final class UserQuestions {
     private init () {}
     
     /// Сохранение выбранных категорий
-    func saveCategories(_ categories: [String]) {
-        UserDefaults.standard.set(categories, forKey: key)
+    func appendCategory(_ label: String) {
+        if checkCategoryExists(category: label) {
+            return
+        }
+        
+        var currentSelectedCategories = getSelectedCategoriesFromUserDefaults()
+        currentSelectedCategories.append(label)
+        UserDefaults.standard.set(currentSelectedCategories, forKey: key)
+    }
+    
+    /// Удаление категории
+    func removeCategory(_ label: String) {
+        let filteredCategories = getSelectedCategoriesFromUserDefaults().filter({ $0 != label }).map(\.self)
+        
+        UserDefaults.standard.set(filteredCategories, forKey: key)
+    }
+    
+    /// Проверить выбрана ли категория
+    func checkCategoryExists(category: String) -> Bool {
+        return getSelectedCategoriesFromUserDefaults().contains(category)
     }
     
     /// Получение сохранённых категорий
@@ -41,6 +59,10 @@ final class UserQuestions {
             }
         }
         return result
+    }
+    
+    private func getSelectedCategoriesFromUserDefaults() -> [String] {
+        return UserDefaults.standard.stringArray(forKey: key) ?? []
     }
 }
 
