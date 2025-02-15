@@ -79,7 +79,7 @@ final class MainView: UIView {
         button.setTitle("Старт игры", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customWhite
+        button.backgroundColor = .customwhite
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -95,7 +95,7 @@ final class MainView: UIView {
         button.setTitle("Категории", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .custom(font: .medium, size: 20)
-        button.backgroundColor = .customWhite
+        button.backgroundColor = .customwhite
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 4)

@@ -72,6 +72,7 @@ class CategoryViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             iconImageView.widthAnchor.constraint(equalToConstant: 80),
+            iconImageView.heightAnchor.constraint(equalToConstant: 80),
             iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             iconImageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -5),
             
