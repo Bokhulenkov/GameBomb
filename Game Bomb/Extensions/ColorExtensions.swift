@@ -20,4 +20,3 @@ extension UIColor {
         static let textSecondaryColor = UIColor(named: "customSecondaryColor") ?? UIColor()
     }
 }
-//

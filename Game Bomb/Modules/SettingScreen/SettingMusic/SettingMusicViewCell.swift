@@ -21,7 +21,7 @@ class SettingMusicViewCell: UICollectionViewCell {
     lazy var selectedMusicLabel: UILabel = {
         let label = UILabel()
         label.font = .custom(font: .regular, size: 14)
-        label.textColor = .customLightGray
+        label.textColor = .CustomColors.lightGray
         label.textAlignment = .right
         
         
@@ -41,7 +41,7 @@ class SettingMusicViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupUI()
         
-        backgroundColor = .customDarkGray
+        backgroundColor = .CustomColors.darkGray
         layer.cornerRadius = 15
     }
     

@@ -24,7 +24,7 @@ class SettingAdditionalViewCell: UICollectionViewCell {
         
         view.onTintColor = .CustomColors.yellow
         view.thumbTintColor = UIColor.white
-        view.tintColor = UIColor.customSecondary
+        view.tintColor = .CustomColors.textSecondaryColor
         
         view.subviews.forEach { subview in
             subview.layer.cornerRadius = 16
@@ -39,7 +39,7 @@ class SettingAdditionalViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupUI()
         
-        backgroundColor = .customDarkGray
+        backgroundColor = .CustomColors.darkGray
         layer.cornerRadius = 15
     }
     

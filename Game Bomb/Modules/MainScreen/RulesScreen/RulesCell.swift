@@ -83,7 +83,7 @@ extension RulesCell {
     func setConstraint() {
         NSLayoutConstraint.activate([
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            shadowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            shadowView.topAnchor.constraint(equalTo: contentView.topAnchor),
             shadowView.widthAnchor.constraint(equalToConstant: 29),
             shadowView.heightAnchor.constraint(equalToConstant: 29),
 
