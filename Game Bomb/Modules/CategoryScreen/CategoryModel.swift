@@ -12,7 +12,3 @@ struct Category {
     let icon: UIImage?
     let label: String
 }
-
-struct Questions {
-
-}
