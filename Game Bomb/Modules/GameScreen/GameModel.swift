@@ -24,7 +24,7 @@ final class GameModel {
     
     private var timer: Timer?
     private var currentSeconds = 0
-    private let secondsForGame = [10, 15, 20, 25, 30, 35, 40]
+    private let secondsForGame = GameSettings.shared.getGameSettings()
     private var selectedTimerDuration: Int = 0
     
     var animation: DotLottieAnimation?
@@ -54,7 +54,7 @@ final class GameModel {
     }
     
     func startGame() {
-        selectedTimerDuration = secondsForGame.randomElement() ?? 5
+        selectedTimerDuration = secondsForGame.time
         startTimer()
         tickAudioPlayer?.play()
         animation?.setSpeed(speed: animationDuration / Float(selectedTimerDuration))

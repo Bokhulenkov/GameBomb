@@ -16,7 +16,7 @@ final class GameSettings {
     
 //    MARK: - Init
     init() {
-        self.defaultSettings = Settings(time: 5, bombMusic: SoundFiles.soundBomb, boomMusic: SoundFiles.soundBoom)
+        self.defaultSettings = Settings()
     }
     
     func saveGameSettings(_ settings: Settings) {
@@ -44,7 +44,7 @@ struct Settings: Codable {
     var bombMusic: String
     var boomMusic: String
     
-    init(time: Int, bombMusic: String, boomMusic: String) {
+    init(time: Int = 5, bombMusic: String = SoundFiles.soundBomb, boomMusic: String = SoundFiles.soundBoom) {
         self.time = time
         self.bombMusic = bombMusic
         self.boomMusic = boomMusic
