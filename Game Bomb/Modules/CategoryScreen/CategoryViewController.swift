@@ -129,7 +129,7 @@ extension CategoryViewController: UICollectionViewDataSource {
 extension CategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Выбрана ячейка: \(categories[indexPath.row].label)")
-        UserQuestions.shared.saveCategories([categories[indexPath.row].label])
+        UserQuestionsService.shared.saveCategories([categories[indexPath.row].label])
     }
 }
 

@@ -1,7 +1,7 @@
 import Foundation
 
-final class UserQuestions {
-    static let shared = UserQuestions()
+final class UserQuestionsService {
+    static let shared = UserQuestionsService()
     
     private let key = "selectedCategories"
     private init () {}
@@ -45,6 +45,6 @@ final class UserQuestions {
 }
 
 //// сохранение
-//UserQuestions.shared.saveCategories(["sportQuestions", "filmQuestions"])
+//UserQuestionsService.shared.saveCategories(["sportQuestions", "filmQuestions"])
 //// получение
 //let questions = UserQuestions.shared.getSelectedQuestions()

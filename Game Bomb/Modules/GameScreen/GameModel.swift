@@ -49,12 +49,12 @@ final class GameModel {
     }
     
     func prepareQuestions() -> String {
-        let questions = UserQuestions.shared.getSelectedQuestions()
+        let questions = UserQuestionsService.shared.getSelectedQuestions()
         return questions.randomElement() ?? "Назовите вид Зимнего спорта"
     }
     
     func startGame() {
-        selectedTimerDuration = secondsForGame.randomElement() ?? 30
+        selectedTimerDuration = secondsForGame.randomElement() ?? 5
         startTimer()
         tickAudioPlayer?.play()
         animation?.setSpeed(speed: animationDuration / Float(selectedTimerDuration))
