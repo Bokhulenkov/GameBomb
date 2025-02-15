@@ -12,6 +12,19 @@ enum SettingTimeType: String, CaseIterable {
     case medium = "Среднее"
     case long = "Длинное"
     case random = "Случайное"
+    
+    var timeValue: Int {
+        switch self {
+        case .short:
+            return 5
+        case .medium:
+            return 10
+        case .long:
+            return 15
+        case .random:
+            return [5, 10, 15, 20, 25, 30].randomElement() ?? 25
+        }
+    }
 }
 
 final class SettingTimeView: SettingContainerView {
@@ -102,7 +115,10 @@ extension SettingTimeView: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension SettingTimeView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(collectionView.cellForItem(at: indexPath))
+        let tapedTimeButton = SettingTimeType.allCases[indexPath.item]
+        let selectedTime = tapedTimeButton.timeValue
+        print("Продолжительность игры: \(selectedTime)")
+        GameSettings.shared.saveGameSettings(Settings(time: selectedTime))
     }
 }
 
