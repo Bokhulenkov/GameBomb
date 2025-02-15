@@ -27,8 +27,14 @@ final class GameSettings {
         }
     }
     
-    func getGameSettings() {
+    func getGameSettings() -> Settings {
+        let decoder = JSONDecoder()
         
+        if let encodedSettings = UserDefaults.standard.data(forKey: key),
+           let settings = try? decoder.decode(Settings.self, from: encodedSettings) {
+            return settings
+        }
+        return defaultSettings
     }
 }
 
