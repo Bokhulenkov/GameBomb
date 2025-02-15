@@ -101,7 +101,9 @@ extension SettingTimeView: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegate
 extension SettingTimeView: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(collectionView.cellForItem(at: indexPath))
+    }
 }
 
 //MARK: -  UICollectionViewDelegateFlowLayout

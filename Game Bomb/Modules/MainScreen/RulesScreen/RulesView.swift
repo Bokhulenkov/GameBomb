@@ -8,21 +8,22 @@
 import UIKit
 
 protocol RulesViewDelegate: AnyObject {
-   func swipeBackButtonTapped()
+    func swipeBackButtonTapped()
 }
 
 final class RulesView: UIView {
-    
+    //    MARK: - Properties
     weak var delegate: RulesViewDelegate?
     
     lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "helpBackground")
+        imageView.image = .CustomImage.helpBackground
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.separatorStyle = .none
@@ -33,52 +34,71 @@ final class RulesView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
     private let button: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "backLine"), for: .normal)
+        button.setImage(.CustomImage.line, for: .normal)
         button.contentMode = .top
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
     private var title: UILabel = {
         let label = UILabel()
-        label.text = "Правила игры"
+        label.text = K.rulesTitle
         label.textAlignment = .center
-        label.textColor = .customDarkGray
+        label.textColor = .CustomColors.darkGray
         label.font = .custom(font: .bold, size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-   
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         setAction()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //    MARK: - Methods
     private func setAction() {
         button.addTarget(self, action: #selector(swipeBackButtonTapped), for: .touchUpInside)
     }
+    
     private func setupViews() {
-        backgroundColor = .customGray
+        backgroundColor = .CustomColors.gray
         layer.cornerRadius = 30
         layer.borderWidth = 0.5
         layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.masksToBounds = true
         
         addSubview(backgroundImageView)
-        backgroundImageView.addSubview(button)
-        backgroundImageView.addSubview(title)
-        backgroundImageView.addSubview(tableView)
-       
+        [
+            button,
+            title,
+            tableView
+        ].forEach {
+            backgroundImageView.addSubview($0)
+        }
+    }
+}
+
+// MARK: - Extensions RulesView
+extension RulesView {
+    @objc func swipeBackButtonTapped() {
+        delegate?.swipeBackButtonTapped()
+    }
+}
+
+// MARK: - Extensions Constraints
+extension RulesView {
+    func setConstraints() {
         NSLayoutConstraint.activate([
-            
             backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -96,13 +116,6 @@ final class RulesView: UIView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-          
         ])
-    }
-}
-
-extension RulesView {
-    @objc func swipeBackButtonTapped() {
-        delegate?.swipeBackButtonTapped()
     }
 }
