@@ -82,9 +82,9 @@ final class MainView: UIView {
         button.backgroundColor = .CustomColors.white
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowOffset = CGSize(width: 3, height: 4)
         button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.25
+        button.layer.shadowOpacity = 0.8
         button.layer.masksToBounds = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -98,9 +98,9 @@ final class MainView: UIView {
         button.backgroundColor = .CustomColors.white
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowOffset = CGSize(width: 3, height: 4)
         button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.25
+        button.layer.shadowOpacity = 0.8
         button.layer.masksToBounds = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -120,30 +120,41 @@ final class MainView: UIView {
     }
     
     //    MARK: - Methods
-    private func setupShadow() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 4)
-        layer.shadowRadius = 4
-        layer.shadowOpacity = 0.25
-        
-        layer.masksToBounds = false
-    }
     private func setupUI() {
         backgroundColor = .mainBackground
         addSubview(backImageView)
-        backImageView.addSubview(gameLabel)
-        backImageView.addSubview(gameBombLabel)
-        backImageView.addSubview(bombImageView)
-        backImageView.addSubview(buttonsStack)
+        [
+            gameLabel,
+            gameBombLabel,
+            bombImageView,
+            buttonsStack
+        ].forEach {
+            backImageView.addSubview($0)
+        }
+        
         buttonsStack.addArrangedSubview(startButton)
         buttonsStack.addArrangedSubview(categoryButton)
     }
-
+    
     private func setActions() {
         startButton.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
     }
+}
+
+// MARK: - Extensions MainView
+extension MainView {
+    @objc func didTapStartButton(_ sender: UIButton) {
+        delegate?.didTapStartButton()
+    }
     
+    @objc func didTapCategoryButton(_ sender: UIButton) {
+        delegate?.didTapCategoryButton()
+    }
+}
+
+// MARK: - Extensions Constraints
+extension MainView {
     private func makeConstraints() {
         NSLayoutConstraint.activate([
             backImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -170,15 +181,5 @@ final class MainView: UIView {
             buttonsStack.heightAnchor.constraint(equalToConstant: 140),
             buttonsStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
-    }
-}
-
-// MARK: - Extensions MainView
-extension MainView {
-    @objc func didTapStartButton() {
-        delegate?.didTapStartButton()
-    }
-    @objc func didTapCategoryButton() {
-        delegate?.didTapCategoryButton()
     }
 }

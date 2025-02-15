@@ -8,7 +8,7 @@
 import UIKit
 
  class RulesCell: UITableViewCell {
-    
+     //    MARK: - Properties
      static let identifier = RulesCell.description()
     
     private let shadowView: UIView = {
@@ -32,6 +32,7 @@ import UIKit
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+     
      let imageButton: UIImageView = {
          let image = UIImageView()
          image.contentMode = .scaleAspectFill
@@ -51,26 +52,41 @@ import UIKit
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        setConstraint()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+//     MARK: - Methods
     func setupUI() {
         shadowView.addSubview(numberLabel)
-        contentView.addSubview(shadowView)
-        contentView.addSubview(descriptionLabel)
-        contentView.addSubview(imageButton)
-        
+        [
+            shadowView,
+            descriptionLabel,
+            imageButton
+        ].forEach {
+            contentView.addSubview($0)
+        }
+    }
+     
+     func configureCell(number: Int, description: NSAttributedString?, image: UIImage?) {
+         numberLabel.text = "\(number)"
+         descriptionLabel.attributedText = description
+         imageButton.image = image
+     }
+}
+
+// MARK: - Extensions Constraint
+extension RulesCell {
+    func setConstraint() {
         NSLayoutConstraint.activate([
             shadowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             shadowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             shadowView.widthAnchor.constraint(equalToConstant: 29),
             shadowView.heightAnchor.constraint(equalToConstant: 29),
 
-//            numberLabel.centerXAnchor.constraint(equalTo: shadowView.centerXAnchor),
-//            numberLabel.centerYAnchor.constraint(equalTo: shadowView.centerYAnchor),
             numberLabel.widthAnchor.constraint(equalToConstant: 29),
             numberLabel.heightAnchor.constraint(equalToConstant: 29),
             numberLabel.topAnchor.constraint(equalTo: shadowView.topAnchor),
@@ -78,7 +94,6 @@ import UIKit
             descriptionLabel.leadingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-//            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             
             imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
             imageButton.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -86,9 +101,4 @@ import UIKit
             imageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8)
         ])
     }
-     func configureCell(number: Int, description: NSAttributedString?, image: UIImage?) {
-         numberLabel.text = "\(number)"
-         descriptionLabel.attributedText = description
-         imageButton.image = image
-     }
 }
