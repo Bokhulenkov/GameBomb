@@ -26,6 +26,9 @@ struct K {
     static let gameTitle = "Игра"
     static let questionTitle = "Нажмите 'Запустить' чтобы начать игру"
     static let startButtonTitle = "Запустить"
+    static let endGameTitle = "Конец игры"
+    static let restartGameTitle = "Начать заново"
+    static let loseTitle = "Другое наказание"
     
     enum Player {
         static let pause = "pause.circle"
