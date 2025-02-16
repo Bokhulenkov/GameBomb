@@ -8,14 +8,14 @@
 import UIKit
 
 struct SettingAdditionalConfig {
+    let key: String
     let name: String
 }
 
-
 final class SettingAdditionalView: SettingContainerView {
     private let configs: [SettingAdditionalConfig] = [
-        .init(name: "Вибрация"),
-        .init(name: "Игра с заданиями")
+        .init(key: "SETTING_ADDITIONAL_VIBRATION", name: "Вибрация"),
+        .init(key: "SETTING_ADDITINOAL_TUTORIAL", name: "Игра с заданиями")
     ]
     
     // MARK: - GUI Variables
