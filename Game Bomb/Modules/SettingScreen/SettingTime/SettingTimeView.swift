@@ -22,7 +22,7 @@ enum SettingTimeType: String, CaseIterable {
         case .long:
             return 45
         case .random:
-            return [10, 15, 20, 25, 30, 35, 40, 45].randomElement() ?? 25
+            return [10, 15, 20, 25, 30, 35, 40, 45].randomElement() ?? 10
         }
     }
 }
