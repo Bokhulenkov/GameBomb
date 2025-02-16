@@ -11,7 +11,7 @@
 ## Технологии
 - **Xcode 16**
 - **iOS 16.6** и выше 
-- Так же разработке использовался пакет **dotLottie Player**      https://github.com/lottiefiles/dotlottie-ios
+- Также в разработке использовался пакет **dotLottie Player**      https://github.com/lottiefiles/dotlottie-ios
 ## Установка
 1. Склонируйте репозиторий:
    ```bash
