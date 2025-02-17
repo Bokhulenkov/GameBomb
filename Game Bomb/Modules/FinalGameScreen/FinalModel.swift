@@ -34,8 +34,12 @@ final class FinalModel {
     }
     
     func prepeareLoss() -> String {
-        let losses = loss.lossGame
-        return losses.randomElement() ?? "Следущий раунд без наказания!"
+        if SettingStorage.shared.get(key: "SETTING_ADDITINOAL_TUTORIAL") == true {
+            let losses = loss.lossGame
+            return losses.randomElement() ?? "Следущий раунд без наказания!"
+        }
+        
+        return " "
     }
     
     private func setupAnimation() {

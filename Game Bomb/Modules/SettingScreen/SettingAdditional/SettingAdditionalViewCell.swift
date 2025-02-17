@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SettingAdditionalViewCell: UICollectionViewCell {
     // MARK: - GUI Variables
@@ -80,9 +81,23 @@ class SettingAdditionalViewCell: UICollectionViewCell {
         
         enable.isOn = SettingStorage.shared.get(key: config.key) ?? false
     }
-    
+//    
     @objc func switchToggled(_ sender: UISwitch) {
+        if enable.isOn == true {
+            print("Вибрация вкл")
+        } else {
+            print("Выкл вибрация")
+        }
         guard let setting else { return }
-        SettingStorage.shared.save(value: enable.isOn, key: setting.key)
+            SettingStorage.shared.save(value: enable.isOn, key: setting.key)
     }
 }
+
+// MARK: - Extensions GameViewController
+extension UIDevice {
+    static func vibrate() {
+        print("Вибрация")
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+    }
+}
+

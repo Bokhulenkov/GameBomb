@@ -7,6 +7,7 @@
 
 
 import UIKit
+import AVFoundation
 
 final class GameViewController: UIViewController {
     // MARK: - Properties
@@ -112,6 +113,9 @@ extension GameViewController: GameModelDelegate {
     }
     
     func gameDidEnd() {
+        if (SettingStorage.shared.get(key: "SETTING_ADDITIONAL_VIBRATION") == true) {
+            UIDevice.vibrate()
+        }
         let finalVC = FinalGameViewController()
         navigationController?.pushViewController(finalVC, animated: false)
         gameView.questuonLabel.isHidden = true
@@ -121,3 +125,4 @@ extension GameViewController: GameModelDelegate {
         gameModel.resumeGame()
     }
 }
+
