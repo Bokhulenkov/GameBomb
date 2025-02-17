@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SettingAdditionalViewCell: UICollectionViewCell {
     // MARK: - GUI Variables
@@ -20,7 +21,6 @@ class SettingAdditionalViewCell: UICollectionViewCell {
     
     lazy var enable: UISwitch = {
         let view = UISwitch()
-        view.isOn = true
         
         view.onTintColor = .CustomColors.yellow
         view.thumbTintColor = UIColor.white
@@ -31,8 +31,13 @@ class SettingAdditionalViewCell: UICollectionViewCell {
             subview.frame.size = CGSize(width: 27, height: 27)
         }
         
+        view.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
+
         return view
     }()
+    
+    // MARK: - Properties
+    private var setting: SettingAdditionalConfig?
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -71,6 +76,28 @@ class SettingAdditionalViewCell: UICollectionViewCell {
     
     //MARK: - Methods
     func configure(with config: SettingAdditionalConfig) {
+        setting = config
         titleLabel.text = config.name
+        
+        enable.isOn = SettingStorage.shared.get(key: config.key) ?? false
+    }
+//    
+    @objc func switchToggled(_ sender: UISwitch) {
+        if enable.isOn == true {
+            print("Вибрация вкл")
+        } else {
+            print("Выкл вибрация")
+        }
+        guard let setting else { return }
+            SettingStorage.shared.save(value: enable.isOn, key: setting.key)
     }
 }
+
+// MARK: - Extensions GameViewController
+extension UIDevice {
+    static func vibrate() {
+        print("Вибрация")
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+    }
+}
+

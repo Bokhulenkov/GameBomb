@@ -86,6 +86,7 @@ final class FinalView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        withoutAnotherQuestionButton()
         setupConstraints()
     }
     
@@ -106,6 +107,12 @@ final class FinalView: UIView {
             questuonLabel,
             boomImage
         ].forEach { backImageView.addSubview($0) }
+    }
+    
+    private func withoutAnotherQuestionButton() {
+        if SettingStorage.shared.get(key: "SETTING_ADDITINOAL_TUTORIAL") == false {
+            anotherQuestionButton.isHidden = true
+        }
     }
     
     // MARK: - Actions

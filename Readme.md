@@ -1,7 +1,7 @@
 # Бомба – взрывная вечеринка в твоем кармане! 
 
 <div>
-<img src="GameBomb/ReadmeImages/video.gif" width="200" />
+<img src="https://github.com/Bokhulenkov/GameBomb/blob/develop/Game%20Bomb/ReadmeImages/video.gif" width="800" />
 </div>
 
 Привет, друзья! 
