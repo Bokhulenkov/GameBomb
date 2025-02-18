@@ -31,14 +31,29 @@ class SettingMusicViewCell: UICollectionViewCell {
         
         return label
     }()
-    
+    var menuItems: [UIAction] {
+        return [
+            UIAction(title: "Мелодия 1", image: nil, handler: { (_) in
+            }),
+            UIAction(title: "Мелодия 2", image: nil,  handler: { (_) in
+            }),
+            UIAction(title: "Мелодия 3", image: nil, handler: { (_) in
+            })
+        ]
+    }
+
+    var demoMenu: UIMenu {
+        return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
+    }
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
         button.setImage(UIImage(named: "next"), for: .normal)
-  
+        button.menu = demoMenu
+        button.showsMenuAsPrimaryAction = true
         return button
     }()
+    
     
     // MARK: - Initialization
     override init(frame: CGRect) {
