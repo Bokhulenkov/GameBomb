@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SettingMusicViewCell: UICollectionViewCell {
+//    MARK: - Properties
+    private var setting: SettingMusicConfig?
+    
     // MARK: - GUI Variables
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -40,7 +44,8 @@ class SettingMusicViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        
+#warning("вот метод который срабатывает при нажатии на селектор у кнопок")
+        nextButton.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         backgroundColor = .CustomColors.darkGray
         layer.cornerRadius = 15
     }
@@ -79,7 +84,18 @@ class SettingMusicViewCell: UICollectionViewCell {
     
     //MARK: - Methods
     func configure(with config: SettingMusicConfig) {
+        setting = config
         titleLabel.text = config.name
         selectedMusicLabel.text = config.currentValue
+    }
+    
+//    MARK: - Actions
+    @objc private func tapedButton(_ sender: UIButton) {
+        guard let setting else { return }
+#warning("Здесь мы сохраняем значение у кнопки которую нажали")
+        SettingStorage.shared.save(value: setting.currentValue, key: setting.name)
+        
+        
+        print("taped button")
     }
 }
