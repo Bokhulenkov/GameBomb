@@ -79,6 +79,7 @@ class SettingMusicViewCell: UICollectionViewCell {
         let actions = type.options.map { options in
             UIAction(title: options, handler: { _ in
                 self.selectedMusicLabel.text = options
+                SettingStorage.shared.save(value: options, key: type.rawValue)
             })
         }
         return UIMenu(title: "", children: actions)
@@ -88,7 +89,7 @@ class SettingMusicViewCell: UICollectionViewCell {
     func configure(with config: SettingMusicConfig) {
         setting = config
         titleLabel.text = config.name
-        selectedMusicLabel.text = config.currentValue
+        selectedMusicLabel.text = SettingStorage.shared.get(key: config.name)
         
         if let type = SoundType(rawValue: config.name) {
             nextButton.menu = createMenu(for: type)
