@@ -9,8 +9,25 @@ import UIKit
 import AVFoundation
 
 class SettingMusicViewCell: UICollectionViewCell {
-//    MARK: - Properties
+    //    MARK: - Properties
     private var setting: SettingMusicConfig?
+    
+    enum SoundType: String, CaseIterable {
+        case music = "Фоновая музыка"
+        case bomb = "Тиканье бомбы"
+        case boom = "Взрыв бомбы"
+        
+        var options: [String] {
+            switch self {
+            case .music:
+                return ["Нет", "Мелодия 1", "Мелодия 2", "Мелодия 3"]
+            case .bomb:
+                return ["Часы 1", "Часы 2", "Часы 3"]
+            case .boom:
+                return ["Взрыв 1", "Взрыв 2", "Взрыв 3"]
+            }
+        }
+    }
     
     // MARK: - GUI Variables
     lazy var titleLabel: UILabel = {
@@ -18,7 +35,6 @@ class SettingMusicViewCell: UICollectionViewCell {
         label.font = .custom(font: .bold, size: 16)
         label.textColor = .white
         label.textAlignment = .left
-        
         return label
     }()
     
@@ -27,40 +43,21 @@ class SettingMusicViewCell: UICollectionViewCell {
         label.font = .custom(font: .regular, size: 14)
         label.textColor = .CustomColors.lightGray
         label.textAlignment = .right
-        
-        
         return label
     }()
-    var menuItems: [UIAction] {
-        return [
-            UIAction(title: "Мелодия 1", image: nil, handler: { (_) in
-            }),
-            UIAction(title: "Мелодия 2", image: nil,  handler: { (_) in
-            }),
-            UIAction(title: "Мелодия 3", image: nil, handler: { (_) in
-            })
-        ]
-    }
-
-    var demoMenu: UIMenu {
-        return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
-    }
+    
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
         button.setImage(UIImage(named: "next"), for: .normal)
-        button.menu = demoMenu
         button.showsMenuAsPrimaryAction = true
         return button
     }()
-    
     
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-#warning("вот метод который срабатывает при нажатии на селектор у кнопок")
-        nextButton.addTarget(self, action: #selector(tapedButton), for: .touchUpInside)
         backgroundColor = .CustomColors.darkGray
         layer.cornerRadius = 15
     }
@@ -78,7 +75,30 @@ class SettingMusicViewCell: UICollectionViewCell {
         setupConstraints()
     }
     
-    private func setupConstraints() {
+    func createMenu(for type: SoundType) -> UIMenu {
+        let actions = type.options.map { options in
+            UIAction(title: options, handler: { _ in
+                self.selectedMusicLabel.text = options
+            })
+        }
+        return UIMenu(title: "", children: actions)
+    }
+    
+    //MARK: - Methods
+    func configure(with config: SettingMusicConfig) {
+        setting = config
+        titleLabel.text = config.name
+        selectedMusicLabel.text = config.currentValue
+        
+        if let type = SoundType(rawValue: config.name) {
+            nextButton.menu = createMenu(for: type)
+        }
+    }
+}
+
+// MARK: - Extensions Constraints
+private extension SettingMusicViewCell {
+    func setupConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         selectedMusicLabel.translatesAutoresizingMaskIntoConstraints = false
         nextButton.translatesAutoresizingMaskIntoConstraints = false
@@ -95,22 +115,5 @@ class SettingMusicViewCell: UICollectionViewCell {
             nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 13),
             nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -13),
         ])
-    }
-    
-    //MARK: - Methods
-    func configure(with config: SettingMusicConfig) {
-        setting = config
-        titleLabel.text = config.name
-        selectedMusicLabel.text = config.currentValue
-    }
-    
-//    MARK: - Actions
-    @objc private func tapedButton(_ sender: UIButton) {
-        guard let setting else { return }
-#warning("Здесь мы сохраняем значение у кнопки которую нажали")
-        SettingStorage.shared.save(value: setting.currentValue, key: setting.name)
-        
-        
-        print("taped button")
     }
 }

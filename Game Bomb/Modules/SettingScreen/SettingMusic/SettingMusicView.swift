@@ -12,11 +12,10 @@ struct SettingMusicConfig {
     let currentValue: String
 }
 
-
 final class SettingMusicView: SettingContainerView {
     private let configs: [SettingMusicConfig] = [
-        .init(name: "Фоновая музыка", currentValue: "Мелодия 1"),
-        .init(name: "Тиканье бомбы", currentValue: "Часы 2"),
+        .init(name: "Фоновая музыка", currentValue: "Нет"),
+        .init(name: "Тиканье бомбы", currentValue: "Часы 1"),
         .init(name: "Взрыв бомбы", currentValue: "Взрыв 1")
     ]
     
@@ -31,14 +30,12 @@ final class SettingMusicView: SettingContainerView {
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
-        
         return collectionView
     }()
     
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupUI()
     }
     
@@ -49,20 +46,7 @@ final class SettingMusicView: SettingContainerView {
     // MARK: - Private Methods
     private func setupUI() {
         addSubview(collectionView)
-        
         setupConstraints()
-    }
-    
-    private func setupConstraints() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
-            collectionView.heightAnchor.constraint(equalToConstant: getCollectionHeight())
-        ])
     }
     
     private func getCollectionHeight() -> CGFloat {
@@ -99,5 +83,20 @@ extension SettingMusicView: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: frame.width - 36, height: 49)
+    }
+}
+
+// MARK: - Extensions Constraints
+private extension SettingMusicView {
+    func setupConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+            collectionView.heightAnchor.constraint(equalToConstant: getCollectionHeight())
+        ])
     }
 }
