@@ -7,27 +7,56 @@
 
 import UIKit
 import AVFoundation
-
+enum SoundType: String, CaseIterable {
+    case music = "background"
+    case bomb = "bomb"
+    case boom = "boom"
+    
+    var title: String {
+        switch self {
+        case .music: return "Фоновая музыка"
+        case .bomb: return "Тиканье бомбы"
+        case .boom: return "Взрыв бомбы"
+        }
+    }
+    
+    var options: [(fileName: String, displayName: String)] {
+        switch self {
+        case .music:
+            return [
+                ("none", "Нет"),
+                ("background1", "Мелодия 1"),
+                ("background2", "Мелодия 2"),
+                ("background3", "Мелодия 3")
+            ]
+        case .bomb:
+            return [
+                ("analogBomb", "Часы 1"),
+                ("soundBomb", "Часы 2"),
+                ("ultramanBomb", "Часы 3")
+            ]
+        case .boom:
+            return [
+                ("droppingBoom", "Взрыв 1"),
+                ("sinusBoom", "Взрыв 2"),
+                ("soundBoom", "Взрыв 3")
+            ]
+        }
+    }
+    
+    var defaultFileName: String {
+        switch self {
+        case .music: return "background1"
+        case .bomb: return "analogBomb"
+        case .boom: return "droppingBoom"
+        }
+    }
+}
 class SettingMusicViewCell: UICollectionViewCell {
     //    MARK: - Properties
     private var setting: SettingMusicConfig?
     
-    enum SoundType: String, CaseIterable {
-        case music = "Фоновая музыка"
-        case bomb = "Тиканье бомбы"
-        case boom = "Взрыв бомбы"
-        
-        var options: [String] {
-            switch self {
-            case .music:
-                return ["Нет", "Мелодия 1", "Мелодия 2", "Мелодия 3"]
-            case .bomb:
-                return ["Часы 1", "Часы 2", "Часы 3"]
-            case .boom:
-                return ["Взрыв 1", "Взрыв 2", "Взрыв 3"]
-            }
-        }
-    }
+    
     
     // MARK: - GUI Variables
     lazy var titleLabel: UILabel = {
@@ -76,22 +105,23 @@ class SettingMusicViewCell: UICollectionViewCell {
     }
     
     func createMenu(for type: SoundType) -> UIMenu {
-        let actions = type.options.map { options in
-            UIAction(title: options, handler: { _ in
-                self.selectedMusicLabel.text = options
-                SettingStorage.shared.save(value: options, key: type.rawValue)
-            })
+        let actions = type.options.map { option in
+            UIAction(title: option.displayName) { _ in
+                self.selectedMusicLabel.text = option.displayName
+                SettingStorage.shared.save(value: option.fileName, key: type.rawValue)
+            }
         }
         return UIMenu(title: "", children: actions)
     }
     
     //MARK: - Methods
     func configure(with config: SettingMusicConfig) {
-        setting = config
         titleLabel.text = config.name
-        selectedMusicLabel.text = SettingStorage.shared.get(key: config.name)
         
-        if let type = SoundType(rawValue: config.name) {
+        if let type = SoundType.allCases.first(where: { $0.title == config.name }) {
+            let savedFileName = SettingStorage.shared.get(key: type.rawValue) ?? type.defaultFileName
+            let displayName = type.options.first { $0.fileName == savedFileName }?.displayName ?? ""
+            selectedMusicLabel.text = displayName
             nextButton.menu = createMenu(for: type)
         }
     }
