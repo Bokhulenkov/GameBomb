@@ -33,7 +33,7 @@ final class GameModel {
     
     var audioPlayer: AVAudioPlayer?
     var tickAudioPlayer: AVAudioPlayer?
-    private var backgroundAudioPlayer: AVAudioPlayer?
+    var backgroundAudioPlayer: AVAudioPlayer?
     
     func prepareSounds() {
         loadBombSound()
@@ -81,11 +81,6 @@ final class GameModel {
         animationView?.isHidden = false
     }
     
-//    func prepareSounds() {
-//        loadSound(name: SoundFiles.soundBomb, player: &tickAudioPlayer)
-//        loadSound(name: SoundFiles.soundBoom, player: &audioPlayer)
-//    }
-    
     func prepareQuestions() -> String {
         let questions = UserQuestionsService.shared.getSelectedQuestions()
         return questions.randomElement() ?? "Назовите вид Зимнего спорта"
@@ -95,6 +90,7 @@ final class GameModel {
         selectedTimerDuration = secondsForGame.time
         startTimer()
         tickAudioPlayer?.play()
+        backgroundAudioPlayer?.play()
         animation?.setSpeed(speed: animationDuration / Float(selectedTimerDuration))
         delegate?.gameDidStart()
     }
@@ -116,21 +112,9 @@ final class GameModel {
     func exitGame() {
         timer?.invalidate()
         tickAudioPlayer?.stop()
+        backgroundAudioPlayer?.stop()
         let _ = animation?.stop()
     }
-    
-//    private func loadSound(name: String, player: inout AVAudioPlayer?) {
-//        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
-//            return
-//        }
-//        let url = URL(fileURLWithPath: path)
-//        do {
-//            player = try AVAudioPlayer(contentsOf: url)
-//            player?.prepareToPlay()
-//        } catch {
-//            print("Error loading sound: \(error)")
-//        }
-//    }
     
     private func startTimer() {
         timer?.invalidate()

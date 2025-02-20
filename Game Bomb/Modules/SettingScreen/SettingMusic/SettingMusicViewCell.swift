@@ -56,8 +56,6 @@ class SettingMusicViewCell: UICollectionViewCell {
     //    MARK: - Properties
     private var setting: SettingMusicConfig?
     
-    
-    
     // MARK: - GUI Variables
     lazy var titleLabel: UILabel = {
         let label = UILabel()
