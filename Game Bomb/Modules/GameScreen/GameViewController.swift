@@ -75,6 +75,7 @@ extension GameViewController: GameViewDelegate {
 extension GameViewController: GameModelDelegate {
     func timerDidUpdate(seconds: Int) {
         gameModel.tickAudioPlayer?.play()
+        //        gameModel.backgroundAudioPlayer?.play()
         print("Игра началась \(seconds)")
     }
     

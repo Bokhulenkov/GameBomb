@@ -33,7 +33,45 @@ final class GameModel {
     
     var audioPlayer: AVAudioPlayer?
     var tickAudioPlayer: AVAudioPlayer?
+    var backgroundAudioPlayer: AVAudioPlayer?
     
+    func prepareSounds() {
+        loadBombSound()
+        loadBoomSound()
+        loadBackgroundMusic()
+    }
+    
+    private func loadBombSound() {
+        let savedSound = SettingStorage.shared.get(key: SoundType.bomb.rawValue) ?? SoundType.bomb.defaultFileName
+        loadSound(name: savedSound, player: &tickAudioPlayer)
+        tickAudioPlayer?.numberOfLoops = -1
+    }
+    
+    private func loadBoomSound() {
+        let savedSound = SettingStorage.shared.get(key: SoundType.boom.rawValue) ?? SoundType.boom.defaultFileName
+        loadSound(name: savedSound, player: &audioPlayer)
+    }
+    
+    private func loadBackgroundMusic() {
+        let savedMusic = SettingStorage.shared.get(key: SoundType.music.rawValue) ?? SoundType.music.defaultFileName
+        guard savedMusic != "none" else { return }
+        loadSound(name: savedMusic, player: &backgroundAudioPlayer)
+        backgroundAudioPlayer?.numberOfLoops = -1
+    }
+    
+    private func loadSound(name: String, player: inout AVAudioPlayer?) {
+        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
+            print("Файл \(name).mp3 не найден")
+            return
+        }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            player?.prepareToPlay()
+        } catch {
+            print("Ошибка загрузки звука: \(error)")
+        }
+    }
     // MARK: - Methods
     func setupAnimation() {
         guard URL(string: LottieConstant.url) != nil else { return }
@@ -41,11 +79,6 @@ final class GameModel {
         animation = DotLottieAnimation(webURL: LottieConstant.url, config: AnimationConfig(autoplay: false, loop: false))
         animationView = animation?.view()
         animationView?.isHidden = false
-    }
-    
-    func prepareSounds() {
-        loadSound(name: SoundFiles.soundBomb, player: &tickAudioPlayer)
-        loadSound(name: SoundFiles.soundBoom, player: &audioPlayer)
     }
     
     func prepareQuestions() -> String {
@@ -57,6 +90,7 @@ final class GameModel {
         selectedTimerDuration = secondsForGame.time
         startTimer()
         tickAudioPlayer?.play()
+        backgroundAudioPlayer?.play()
         animation?.setSpeed(speed: animationDuration / Float(selectedTimerDuration))
         delegate?.gameDidStart()
     }
@@ -78,20 +112,8 @@ final class GameModel {
     func exitGame() {
         timer?.invalidate()
         tickAudioPlayer?.stop()
+        backgroundAudioPlayer?.stop()
         let _ = animation?.stop()
-    }
-    
-    private func loadSound(name: String, player: inout AVAudioPlayer?) {
-        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
-            return
-        }
-        let url = URL(fileURLWithPath: path)
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            player?.prepareToPlay()
-        } catch {
-            print("Error loading sound: \(error)")
-        }
     }
     
     private func startTimer() {
