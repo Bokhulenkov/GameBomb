@@ -123,6 +123,12 @@ class SettingMusicViewCell: UICollectionViewCell {
             nextButton.menu = createMenu(for: type)
         }
     }
+//    увеличили область действия кнопки смены мелодии
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+            
+            let buttonFrame = nextButton.frame.insetBy(dx: -40, dy: 0)
+            return buttonFrame.contains(point) ? nextButton : super.hitTest(point, with: event)
+    }
 }
 
 // MARK: - Extensions Constraints
